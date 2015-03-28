@@ -37,8 +37,10 @@
     <meta name="twitter:image:src"
           content="{% block tw_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
     {% block base-css %}
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-{#        <link rel="stylesheet" href="{% static 'css/base.css' %}">#}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue_grey-cyan.min.css" />
+
+        {#        <link rel="stylesheet" href="{% static 'css/base.css' %}">#}
     {% endblock %}
     {% block page-css %}{% endblock %}
     <!--[if lt IE 9]>
@@ -47,21 +49,21 @@
 </head>
 <body>
 <script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '228116447523714',
-      xfbml      : true,
-      version    : 'v2.5'
-    });
-  };
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '228116447523714',
+            xfbml      : true,
+            version    : 'v2.5'
+        });
+    };
 
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 </script>
 {% block body %}
     {% block nav-main %}
@@ -74,6 +76,34 @@
                 <p>로그인안함</p>
             {% endif %}
         </nav>
+        <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header mdl-layout__header--transparent">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Title</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Title</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+            </main>
+        </div>
     {% endblock %}
     <div id="content">
         {% block content %}
@@ -88,6 +118,7 @@
 {% block base-js %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
     {% block js %}{% endblock %}
