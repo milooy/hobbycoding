@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     watch: {
-      files: ["static/less/*.less", "build/less/skins/*.less", "static/js/app.js"],
+      files: ["/hobbycoding/static/less/*.less", "build/less/skins/*.less", "static/js/app.js"],
       tasks: ["less", "uglify"]
     },
     /* LESS Compile */
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
           compress: false
         },
         files: {
-          "static/dist/css/base.css": "static/less/base.less",
+          "/hobbycoding/static/css/base.css": "/hobbycoding/static/less/base.less",
         }
       },
       production: {
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: {
-          "static/dist/css/base.css": "static/less/base.less",
+          "/hobbycoding/static/css/base.css": "/hobbycoding/static/less/base.less",
         }
       }
     },
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
           expand: true,
           cwd: 'static/img/',
           src: ['**/*.{png,jpg,gif,svg,jpeg}'],
-          dest: 'static/dist/img/'
+          dest: '/hobbycoding/static/img/'
         }]
       }
     },
@@ -56,16 +56,16 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc'
       },
       core: {
-        src: 'static/js/app.js'
+        src: '/hobbycoding/static/js/app.js'
       }
     },
 
     csslint: {
       options: {
-        csslintrc: 'static/less/.csslintrc'
+        csslintrc: '/hobbycoding/static/less/.csslintrc'
       },
       dist: [
-        'static/dist/css/base.css',
+        '/hobbycoding/static/css/base.css',
       ]
     },
 
