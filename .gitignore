@@ -60,3 +60,15 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+ipynb
+*.ipynb
+
+#FRONTEND
+node_modules
+bower_components
+collected_static
+*.sqlite3
+*.rdb
+.env
+dev-*.sh
+media
