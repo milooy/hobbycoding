@@ -123,3 +123,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     ("components", os.path.join(BASE_DIR, "bower_components")),
 )
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_statics')
+
+# 업로드된 미디어 URL 추가
+MEDIA_URL = '/media/'  # template tag를 통해 html에 삽입. local에선 실제 URL과 상관없이 django가 알아서 찾아줌
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # 사용자가 어느 폴더 파일을 업로드할 지 결정
