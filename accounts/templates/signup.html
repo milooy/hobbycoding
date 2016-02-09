@@ -6,8 +6,13 @@ sign up
 {% block content %}
 
 <!-- Sign Up Form -->
-<form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}">
+<form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
     {% csrf_token %}
+
+    {{ signupform.avatar }}
+
+    {{ signupform.nickname.label_tag }}
+    {{ signupform.nickname }}
 
     <!-- Username input-->
     <div class="row control-group">

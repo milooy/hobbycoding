@@ -134,5 +134,5 @@ MEDIA_URL = '/media/'  # template tag를 통해 html에 삽입. local에선 실�
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")  # 사용자가 어느 폴더 파일을 업로드할 지 결정
 
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login/'
-LOGOUT_URL = 'logout/'
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
