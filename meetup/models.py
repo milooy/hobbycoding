@@ -9,9 +9,11 @@ class Meetup(models.Model):
     image_file = models.ImageField(upload_to='%Y/%m/%d')
     created_date = models.DateTimeField(
         default=timezone.now)
+    modified_date = models.DateTimeField(
+        blank=True, null=True)
 
-    def publish(self):
-        self.published_date = timezone.now()
+    def modify(self):
+        self.modified_date = timezone.now()
         self.save()
 
     def __str__(self):

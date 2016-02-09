@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from meetup.models import Meetup
 from django.shortcuts import render, get_object_or_404
 

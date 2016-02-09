@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+    hoco 디테일
+    <img src='{{ meetup.image_file.url }}'>
+    {{ meetup.author }}
+    {{ meetup.title }}
+{% endblock %}

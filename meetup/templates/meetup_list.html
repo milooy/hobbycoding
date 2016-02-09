@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    호코 리스트
+    {% for meetup in meetups %}
+        <div class="post">
+            <div class="date">
+                {{ meetup.created_date }}
+            </div>
+            <img src='{{ meetup.image_file.url }}'>
+            <h1><a href="{% url 'meetup_detail' pk=meetup.pk %}">{{ meetup.title }}</a></h1>
+            <p>{{ meetup.desc|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

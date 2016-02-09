@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    hoco 만들기
+    <form method="POST" action="{% url 'meetup_new' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit"/></p>
+    </form>
+{% endblock %}
