@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'hobbycoding',
     'meetup',
 ]
 
@@ -56,7 +57,9 @@ ROOT_URLCONF = 'hobbycoding.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # os.path.join(BASE_DIR, 'templates'), # 이거 안넣어도 되나
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

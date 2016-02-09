@@ -1,0 +1,72 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="ko">
+<head>
+    <!-- env -->
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta name="language" content="Korean">
+    <meta http-equiv="content-language" content="KO">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- title -->
+    <title>{% block title %}HOBBYCODING{% endblock %}</title>
+    <meta name="title" content="{% block meta_title %}HOBBYCODING{% endblock %}"/>
+    <meta name="description"
+          content="{% block meta_description %}취미코딩 커뮤니티{% endblock %}"/>
+    <meta name="keywords"
+          content="{% block meta_keywords %}취미코딩,모임,meetup{% endblock %}">
+    {% block meta_extra %}{% endblock %}
+    <!-- og -->
+    <meta property="og:site_name" content="HOBBYCODING"/>
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}"/>
+    <meta property="og:title" content="{% block og_title %}HOBBYCODING{% endblock %}"/>
+    <meta property="og:url" content="{% block og_url %}{{ SITE_URL }}{% endblock %}"/>
+    <meta property="og:description"
+          content="{% block og_description %}취미로 코딩하기, HOBBYCODING{% endblock %}"/>
+    <meta property="og:image"
+          content="{% block og_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
+    <!-- twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content="{% block tw_url %}{{ SITE_URL }}{% endblock %}"/>
+    <meta name="twitter:title" content="{% block tw_title %}HOBBYCODING{% endblock %}"/>
+    <meta name="twitter:description"
+          content="{% block tw_description %}취미로 코딩하기, HOBBYCODING{% endblock %}"/>
+    <meta name="twitter:image:src"
+          content="{% block tw_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
+    {% block base-css %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+    {% block page-css %}{% endblock %}
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="{% static 'components/html5shiv/dist/html5shiv.js' %}"></script>
+    <![endif]-->
+</head>
+<body>
+{% block body %}
+    {% block nav-main %}
+        <nav class="main">
+            네비게이션
+        </nav>
+    {% endblock %}
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block page-footer %}
+        <footer class="page-footer">
+            푸터푸터
+        </footer>
+    {% endblock %}
+{% endblock %}
+{% block base-js %}
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block js %}{% endblock %}
+{% endblock %}
+</body>
+</html>
