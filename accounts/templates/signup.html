@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+sign up
+{% endblock %}
+{% block content %}
+
+<!-- Sign Up Form -->
+<form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}">
+    {% csrf_token %}
+
+    <!-- Username input-->
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ signupform.username.label_tag }}
+            {{ signupform.username }}
+            <span class="field-error">
+            {{ signupform.username.errors|striptags }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Email input-->
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ signupform.email.label_tag }}
+            {{ signupform.email }}
+            <span class="field-error">
+            {{ signupform.email.errors|striptags }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Password1 input-->
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ signupform.password1.label_tag }}
+            {{ signupform.password1 }}
+            <span class="field-error">
+            {{ signupform.password1.errors|striptags }}
+            </span>
+        </div>
+    </div>
+
+    <!-- Password2 input-->
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ signupform.password2.label_tag }}
+            {{ signupform.password2 }}
+            <span class="field-error">
+            {{ signupform.password2.errors|striptags }}
+            </span>
+        </div>
+    </div>
+
+    <br>
+
+    <!-- Button -->
+    <div class="row">
+        <div class="form-group col-xs-12">
+            <button id="signup" name="signup" class="btn btn-block btn-default" type="submit">Sign Up</button>
+            <hr>
+            <center>
+            Or <a href="{% url 'login' %}"><u>log in</u></a>
+            if you have an account.
+            </center>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

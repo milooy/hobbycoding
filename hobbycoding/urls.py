@@ -22,6 +22,8 @@ from . import views
 
 urlpatterns = [
     url(r'', include('meetup.urls')),
+    url(r'', include('accounts.urls')),
+
     url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
 ]
