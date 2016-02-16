@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
 
 class Meetup(models.Model):
-    author = models.ForeignKey('auth.User')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=200)
     desc = models.TextField()
     image_file = models.ImageField(upload_to='%Y/%m/%d')

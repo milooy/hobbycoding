@@ -9,5 +9,6 @@ urlpatterns = [
         template_name='accounts.views.signup_ok.html'
     ), name='signup_ok'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
-    url(r'^logout/$', auth_views.logout, { 'next_page': '/login/'}, name='logout'),
+    # url(r'^login/$', 'django.contrib.auth.views.login', name='login_url'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', { 'next_page': '/login/'}, name='logout'),
 ]

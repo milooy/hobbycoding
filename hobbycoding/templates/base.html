@@ -50,7 +50,7 @@
         <nav class="main">
             네비게이션
             {% if user.is_authenticated %}
-                <p>나는 {{ user.username }}. 이다</p>
+                <p>나는 {{ user.email }} 이다</p>
             {% else %}
                 <p>로그인안함</p>
             {% endif %}
