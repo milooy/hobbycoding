@@ -1,55 +1,55 @@
+# coding: utf-8
+
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
-)
+    BaseUserManager, AbstractBaseUser,
+    PermissionsMixin)
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
+    def create_user(self, email, nickname, password=None):
         if not email:
             raise ValueError('Users must have an email address')
 
         user = self.model(
             email=MyUserManager.normalize_email(email),
-            date_of_birth=date_of_birth,
+            nickname=nickname,
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, date_of_birth, password):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
+    def create_superuser(self, email, nickname, password):
         u = self.create_user(email=email,
-                        password=password,
-                        date_of_birth=date_of_birth
-                    )
+                             nickname=nickname,
+                             password=password,
+                             )
         u.is_admin = True
         u.save(using=self._db)
         return u
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser,  PermissionsMixin):
     email = models.EmailField(
-                        verbose_name='email address',
-                        max_length=255,
-                        unique=True,
-                    )
-    date_of_birth = models.DateField()
+        verbose_name='email address',
+        max_length=255,
+        unique=True,
+    )
+    nickname = models.CharField(u'닉네임', max_length=10, blank=False, unique=True, default='')
+    avatar = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to='image/avatar/',
+    )
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = ['nickname']
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -59,7 +59,7 @@ class MyUser(AbstractBaseUser):
         # The user is identified by their email address
         return self.email
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email
 
     def has_perm(self, perm, obj=None):

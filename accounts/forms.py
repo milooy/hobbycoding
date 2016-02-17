@@ -13,7 +13,7 @@ class SignupForm(UserCreationForm):
             'required': 'True',
         } # 이렇게 변환된다. <input type="email" class="form-control" placeholder="Email" required="True"/>
     ))
-    username = forms.RegexField(label="Username", max_length=30,
+    nickname = forms.RegexField(label="Nickname", max_length=30,
         regex=r'^[\w.@+-]+$',
         help_text="Required. 30 characters or fewer. Letters, digits and "
                     "@/./+/-/_ only.",
@@ -22,7 +22,7 @@ class SignupForm(UserCreationForm):
                          "@/./+/-/_ characters."},
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Username',
+            'placeholder': 'Nickname',
             'required': 'true',
         }))
     password1 = forms.CharField(
@@ -49,16 +49,16 @@ class SignupForm(UserCreationForm):
 
     class Meta: # SignupForm에 대한 기술서
         model = MyUser
-        fields = ("username", "email", "password1", "password2",) # 작성한 필드만큼 화면에 보여짐
+        fields = ("email", "nickname", "password1", "password2",) # 작성한 필드만큼 화면에 보여짐
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(
+    email = forms.CharField(
         max_length=30,
         widget=forms.TextInput(
             attrs={
                 'class': 'form-control',
-                'placeholder': 'Username',
+                'placeholder': 'nickname',
                 'required': 'True',
             }
         )
