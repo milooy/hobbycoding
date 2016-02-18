@@ -1,18 +1,17 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.files.images import get_image_dimensions
-from django.contrib.auth.models import User
 
 from .models import MyUser
 
 
 class SignupForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(
-        attrs={ #field arguments들을 넣는다. HTML에 보여지는 태그의 속성 정의
+        attrs={
             'class': 'form-control',
             'placeholder': 'Email',
             'required': 'True',
-        } # 이렇게 변환된다. <input type="email" class="form-control" placeholder="Email" required="True"/>
+        }
     ))
     nickname = forms.RegexField(label="Nickname", max_length=30,
                                 regex=r'^[\w.@+-]+$',

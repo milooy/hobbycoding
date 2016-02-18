@@ -36,7 +36,12 @@ class MyUser(AbstractBaseUser,  PermissionsMixin):
         max_length=255,
         unique=True,
     )
-    nickname = models.CharField(u'닉네임', max_length=10, blank=False, unique=True, default='')
+    nickname = models.CharField(
+        u'닉네임',
+        max_length=10,
+        blank=False,
+        unique=True,
+        default='')
     avatar = models.ImageField(
         null=True,
         blank=True,
