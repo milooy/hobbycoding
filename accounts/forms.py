@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.core.files.images import get_image_dimensions
 from django.contrib.auth.models import User
 
 from .models import MyUser
@@ -46,7 +47,7 @@ class SignupForm(UserCreationForm):
         ),
         help_text="Enter the same password as above, for verification."
     )
-    avatar = forms.ImageField()
+    # avatar = forms.ImageField()
 
     class Meta: # SignupForm에 대한 기술서
         model = MyUser
@@ -59,7 +60,7 @@ class SignupForm(UserCreationForm):
             w, h = get_image_dimensions(avatar)
 
             #validate dimensions
-            max_width = max_height = 100
+            max_width = max_height = 500
             if w > max_width or h > max_height:
                 raise forms.ValidationError(
                     u'Please use an image that is '
