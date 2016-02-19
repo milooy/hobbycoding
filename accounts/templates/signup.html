@@ -1,80 +1,81 @@
 {% extends 'base.html' %}
 
 {% block title %}
-sign up
+    sign up
 {% endblock %}
 {% block content %}
 
-<!-- Sign Up Form -->
-<form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
-    {% csrf_token %}
+    <!-- Sign Up Form -->
+    <form id="signup" class="form-horizontal" method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+        {% csrf_token %}
 
-    <!-- Username input-->
-    <div class="row control-group">
-        <div class="form-group col-xs-12 floating-label-form-group controls">
-            {{ signupform.username.label_tag }}
-            {{ signupform.username }}
+        <!-- Username input-->
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                {{ signupform.username.label_tag }}
+                {{ signupform.username }}
             <span class="field-error">
             {{ signupform.username.errors|striptags }}
             </span>
+            </div>
         </div>
-    </div>
 
-    <!-- Email input-->
-    <div class="row control-group">
-        <div class="form-group col-xs-12 floating-label-form-group controls">
-            {{ signupform.email.label_tag }}
-            {{ signupform.email }}
+        <!-- Email input-->
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                {{ signupform.email.label_tag }}
+                {{ signupform.email }}
             <span class="field-error">
             {{ signupform.email.errors|striptags }}
             </span>
+            </div>
         </div>
-    </div>
 
-    {{ signupform.nickname.label_tag }}
-    {{ signupform.nickname }}
-    {{ signupform.nickname.errors|striptags }}
+        {{ signupform.nickname.label_tag }}
+        {{ signupform.nickname }}
+        {{ signupform.nickname.errors|striptags }}
 
-    {{ signupform.avatar.label_tag }}
-    {{ signupform.avatar }}
-    {{ signupform.avatar.errors|striptags }}
+        {{ signupform.avatar.label_tag }}
+        {{ signupform.avatar }}
+        {{ signupform.avatar.errors|striptags }}
 
-    <!-- Password1 input-->
-    <div class="row control-group">
-        <div class="form-group col-xs-12 floating-label-form-group controls">
-            {{ signupform.password1.label_tag }}
-            {{ signupform.password1 }}
+        <!-- Password1 input-->
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                {{ signupform.password1.label_tag }}
+                {{ signupform.password1 }}
             <span class="field-error">
             {{ signupform.password1.errors|striptags }}
             </span>
+            </div>
         </div>
-    </div>
 
-    <!-- Password2 input-->
-    <div class="row control-group">
-        <div class="form-group col-xs-12 floating-label-form-group controls">
-            {{ signupform.password2.label_tag }}
-            {{ signupform.password2 }}
+        <!-- Password2 input-->
+        <div class="row control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                {{ signupform.password2.label_tag }}
+                {{ signupform.password2 }}
             <span class="field-error">
             {{ signupform.password2.errors|striptags }}
             </span>
+            </div>
         </div>
-    </div>
 
-    <br>
+        <br>
 
-    <!-- Button -->
-    <div class="row">
-        <div class="form-group col-xs-12">
-            <button id="signup" name="signup" class="btn btn-block btn-default" type="submit">Sign Up</button>
-            <hr>
-            <center>
-            Or <a href="{% url 'login' %}"><u>log in</u></a>
-            if you have an account.
-            </center>
+        <!-- Button -->
+        <div class="row">
+            <div class="form-group col-xs-12">
+                <button id="signup" name="signup" class="btn btn-block btn-default" type="submit">Sign Up</button>
+                <hr>
+                <center>
+                    <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+                    Or <a href="{% url 'login' %}"><u>log in</u></a>
+                    if you have an account.
+                </center>
+            </div>
         </div>
-    </div>
 
-</form>
+    </form>
 
 {% endblock %}

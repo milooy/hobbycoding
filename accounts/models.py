@@ -40,7 +40,7 @@ class MyUser(AbstractBaseUser,  PermissionsMixin):
         u'닉네임',
         max_length=10,
         blank=False,
-        unique=True,
+        # unique=True,
         default='')
     avatar = models.ImageField(
         null=True,

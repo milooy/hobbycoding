@@ -1,2 +1,4 @@
 django==1.9.2
 Pillow
+django-social-auth
+python-social-auth
