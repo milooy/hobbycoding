@@ -1,10 +1,14 @@
+from urllib.request import urlopen
 from uuid import uuid4
 
+from django.core.files.base import ContentFile
 from django.shortcuts import render_to_response
 from social.pipeline.partial import partial
 from social.utils import slugify, module_member
 
 # USER_FIELDS = ['username', 'email']
+from accounts.models import MyUser
+
 USER_FIELDS = ['email', 'nickname']
 
 
@@ -53,3 +57,16 @@ def create_user(strategy, details, user=None, *args, **kwargs):
         'is_new': True,
         'user': strategy.create_user(**fields)
     }
+
+
+def update_avatar(backend, response, uid, user, *args, **kwargs):
+    email = kwargs['details']['email']
+
+    if backend.name == 'facebook':
+        url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
+        avatar = urlopen(url)
+        # profile = user.get_profile()
+        # user = MyUser.objects.get(email=email)
+        print(user)
+        user.avatar.save(slugify(user.email + " social") + '.jpg', ContentFile(avatar.read()))
+        user.save()

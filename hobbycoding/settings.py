@@ -85,8 +85,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_user',
     'social.pipeline.user.get_username',
     # 'social.pipeline.user.create_user',
-    # 'accounts.social.create_nickname',
     'accounts.social.create_user',
+    'accounts.social.update_avatar',
     'social.pipeline.social_auth.associate_user',
     'social.pipeline.social_auth.load_extra_data',
     'social.pipeline.user.user_details'
@@ -96,7 +96,7 @@ SOCIAL_AUTH_PIPELINE = (
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'picture']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, email, age_range'
 }

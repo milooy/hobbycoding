@@ -1,4 +1,5 @@
-<!DOCTYPE html>{% load staticfiles %}
+<!DOCTYPE html>
+{% load staticfiles %}
 <html lang="ko">
 <head>
     <!-- env -->
@@ -67,6 +68,7 @@
         <nav class="main">
             네비게이션
             {% if user.is_authenticated %}
+                <img src="{{ user.avatar.url }}">
                 <p>나는 {{ user.email }} 이다</p>
             {% else %}
                 <p>로그인안함</p>
