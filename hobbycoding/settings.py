@@ -82,7 +82,7 @@ SOCIAL_AUTH_PIPELINE = (
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'picture']
+FACEBOOK_EXTENDED_PERMISSIONS = ['picture']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
   'fields': 'id, name, email, age_range'
 }
