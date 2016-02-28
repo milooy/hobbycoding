@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     watch: {
-      files: ["/hobbycoding/static/less/*.less", "build/less/skins/*.less", "static/js/app.js"],
+      files: ["hobbycoding/static/less/*.less", "hobbycoding/static/js/base.js"],
       tasks: ["less", "uglify"]
     },
     /* LESS Compile */
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
           compress: false
         },
         files: {
-          "/hobbycoding/static/css/base.css": "/hobbycoding/static/less/base.less",
+          "hobbycoding/static/css/base.css": "hobbycoding/static/less/base.less",
         }
       },
       production: {
@@ -22,7 +22,7 @@ module.exports = function (grunt) {
           compress: true
         },
         files: {
-          "/hobbycoding/static/css/base.css": "/hobbycoding/static/less/base.less",
+          "hobbycoding/static/css/base.css": "hobbycoding/static/less/base.less",
         }
       }
     },
