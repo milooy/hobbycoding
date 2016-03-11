@@ -2,6 +2,11 @@
 {% block content %}
     hoco 디테일
     <img src='{{ meetup.image_file.url }}'>
-    {{ meetup.author }}
-    {{ meetup.title }}
+    주최자: {{ meetup.author }}
+    제목: {{ meetup.title }}
+    <button><a target="_blank"
+               href="{% url 'meetup-join' meetup.id %}">
+        Check It Out
+    </a>관심 버튼</button>
+    관심자 목록: {{ meetup.likes }}
 {% endblock %}

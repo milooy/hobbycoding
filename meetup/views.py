@@ -49,3 +49,9 @@ def meetup_edit(request, pk):
             return redirect('meetup.views.meetup_detail', pk=new_meetup.pk)
 
     return render(request, 'meetup_edit.html', {'form': form})
+
+
+def meetup_join(request, pk):
+    Meetup.objects.filter(pk=pk).update(views=F('views')+1)
+    # return HttpResponseRedirect(request.GET.get('next')))
+    return ''
