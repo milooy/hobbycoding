@@ -74,15 +74,12 @@
                 <!-- Add spacer, to align navigation to the right -->
                 <div class="mdl-layout-spacer"></div>
                 <!-- Navigation. We hide it in small screens. -->
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <nav class="nav_main mdl-navigation mdl-layout--large-screen-only">
                     <a class="mdl-navigation__link" href="/hoco">hocos</a>
-                    <a class="mdl-navigation__link" href="/signup">회원가입</a>
-
-
                     {% if user.is_authenticated %}
-                        <img src="{{ user.avatar.url }}">
-                        <a class="mdl-navigation__link" href="">{{ user.email }}</a>
+                        <a class="user_info mdl-navigation__link" href=""><img src="{{ user.avatar.url }}"/>{{ user.email }}</a>
                     {% else %}
+                        <a class="mdl-navigation__link" href="/signup">회원가입</a>
                         <a class="mdl-navigation__link" href="/login">로그인</a>
                     {% endif %}
                 </nav>
