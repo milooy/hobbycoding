@@ -37,8 +37,8 @@
     <meta name="twitter:image:src"
           content="{% block tw_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
     {% block base-css %}
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue_grey-cyan.min.css" />
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
     {% block page-css %}{% endblock %}
@@ -65,60 +65,68 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 {% block body %}
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     {% block nav-main %}
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title">Hobbycoding</span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-                <!-- Navigation. We hide it in small screens. -->
-                <nav class="nav_main mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="/hoco">hocos</a>
+        <nav class="nav-main teal lighten-4" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">HobbyCoding</a>
+                <ul id="nav-top" class="right hide-on-med-and-down">
+                    <li><a href="/hoco">hocos</a></li>
                     {% if user.is_authenticated %}
-                        <a class="user_info mdl-navigation__link" href=""><img src="{{ user.avatar.url }}"/>{{ user.email }}</a>
+                        <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.email }}</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
                     {% else %}
-                        <a class="mdl-navigation__link" href="/signup">회원가입</a>
-                        <a class="mdl-navigation__link" href="/login">로그인</a>
+                        <li><a href="/signup">회원가입</a></li>
+                        <li><a href="/login">로그인</a></li>
                     {% endif %}
-                </nav>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">Title</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-            </nav>
-        </div>
-    {% endblock %}
-    <main class="mdl-layout__content">
-        <div id="content" class="page-content">
-            {% block content %}
-            {% endblock %}
-        </div>
-
-    {% block page-footer %}
-        <footer class="page-footer mdl-mini-footer">
-            <div class="mdl-mini-footer__left-section">
-                <div class="mdl-logo">Title</div>
-                <ul class="mdl-mini-footer__link-list">
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Privacy & Terms</a></li>
                 </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block page-footer %}
+        <footer class="page-footer teal darken-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Hobby Coding</h5>
+                        <p class="grey-text text-lighten-4">자라장장 장고로 만들자</p>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">먹고싶은 것</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">오징어회</a></li>
+                            <li><a class="white-text" href="#!">간장새우</a></li>
+                            <li><a class="white-text" href="#!">항정살</a></li>
+                        </ul>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">집에가자</h5>
+                        <ul>
+                            <li><a class="white-text" href="#!">그렇다 전해라</a></li>
+                            <li><a class="white-text" href="#!">네</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    Made by <a href="http://materializecss.com">Jay Jin</a>
+                </div>
             </div>
         </footer>
     {% endblock %}
-    </main>
-
 {% endblock %}
 {% block base-js %}
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
     {% block js %}{% endblock %}
