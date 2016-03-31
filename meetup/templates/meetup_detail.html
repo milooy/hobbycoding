@@ -2,11 +2,31 @@
 {% block content %}
     hoco 디테일
     <img src='{{ meetup.image_file.url }}'>
-    주최자: {{ meetup.author }}
-    제목: {{ meetup.title }}
-    <button><a target="_blank"
-               href="{% url 'meetup-join' meetup.id %}">
-        Check It Out
-    </a>관심 버튼</button>
-    관심자 목록: {{ meetup.likes }}
+    <div class="meetup-detail">
+        <ul>
+            <li>주최자: {{ meetup.author }}</li>
+            <li>제목: {{ meetup.title }}</li>
+            <li>설명: {{ meetup.desc }}</li>
+        </ul>
+    </div>
+    <div class="likes-container">
+        <button><a target="_blank" href="{% url 'meetup_join' meetup.id %}"></a>관심 버튼</button>
+        관심자 목록: {{ meetup.likes }}
+    </div>
+    <div class="comments-container">
+        <div class="add-comments">
+            <h3>댓글 달기</h3>
+
+        </div>
+        <a class="btn btn-default" href="{% url 'meetup_add_comments' pk=meetup.pk %}">Add comment</a>
+        {% for comment in meetup.comments.all %}
+            <div class="comment">
+                <div class="date">{{ comment.created_date }}</div>
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            </div>
+        {% empty %}
+            <p>댓글이 없습니다</p>
+        {% endfor %}
+    </div>
 {% endblock %}
