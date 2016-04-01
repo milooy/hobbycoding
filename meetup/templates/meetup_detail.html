@@ -16,9 +16,13 @@
     <div class="comments-container">
         <div class="add-comments">
             <h3>댓글 달기</h3>
-
+            <img src="{{ user.avatar.url }}"/>{{ user.nickname }}
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ cmtForm.as_p }}
+                <button type="submit" class="save btn btn-default">Send</button>
+            </form>
         </div>
-        <a class="btn btn-default" href="{% url 'meetup_add_comments' pk=meetup.pk %}">Add comment</a>
         {% for comment in meetup.comments.all %}
             <div class="comment">
                 <div class="date">{{ comment.created_date }}</div>

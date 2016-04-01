@@ -12,20 +12,18 @@ def meetup_list(request):
     return render(request, 'meetup_list.html', {'meetups':meetups})
 
 
+# TODO: comment 폼을 여기서 분리하고 싶은데..
 def meetup_detail(request, pk):
     meetup = get_object_or_404(Meetup, pk=pk)
-
     if request.method == 'GET':
         form = CommentForm()
     elif request.method == 'POST':
         form = CommentForm(request.POST)
-
         if form.is_valid():
-            new_comment = form.save(commit=False)
-            new_comment.author = request.user
-            new_comment.meetup = meetup
-            new_comment.created_date = timezone.now()
-            new_comment.save()
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.meetup = meetup
+            comment.save()
             return redirect('meetup.views.meetup_detail', pk=pk)
 
     return render(request, 'meetup_detail.html', {'meetup': meetup, 'cmtForm': form})
@@ -37,7 +35,6 @@ def meetup_new(request):
         form = MeetupEditForm()
     elif request.method == 'POST':
         form = MeetupEditForm(request.POST, request.FILES)
-
         if form.is_valid():
             new_meetup = form.save(commit=False)
             new_meetup.author = request.user
@@ -69,18 +66,3 @@ def meetup_join(request, pk):
     Meetup.objects.filter(pk=pk).update(views=F('views')+1)
     # return HttpResponseRedirect(request.GET.get('next')))
     return ''
-
-
-def meetup_add_comments(request, pk):
-    meetup = get_object_or_404(Meetup, pk=pk)
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.meetup = meetup
-            comment.save()
-            return redirect('meetup.views.meetup_detail', pk=meetup.pk)
-    else:
-        form = CommentForm()
-    return render(request, 'meetup_add_comments.html', {'form': form})
