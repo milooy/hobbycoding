@@ -12,6 +12,11 @@
     <div class="likes-container">
         <button><a target="_blank" href="{% url 'meetup_join' meetup.id %}"></a>관심 버튼</button>
         관심자 목록: {{ meetup.likes }}
+        {% for like in meetup.likes.all %}
+            <p>{{ like.nickname }}</p>
+        {% empty %}
+            <p>노관심</p>
+        {% endfor %}
     </div>
     <div class="comments-container">
         <div class="add-comments">

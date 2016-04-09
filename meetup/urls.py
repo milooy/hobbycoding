@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^meetup/(?P<pk>[0-9]+)/edit/$', views.meetup_edit, name='meetup_edit'),
 
     url(r'^meetup/join/(?P<pk>\d+)/$', views.meetup_join, name='meetup_join'),
+    url(r'^meetup/(?P<pk>\d+)/like/$', views.meetup_like, name='meetup_like'),
 ]

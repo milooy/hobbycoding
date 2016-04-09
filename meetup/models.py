@@ -14,7 +14,7 @@ class Meetup(models.Model):
     # TODO: related_name이 뭐지
     # TODO: verbose_name과 그냥 앞에 쓴 것의 차이점
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'주최자', related_name='my_meetup')
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='liked_meetup')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='likes')
 
     # 정보
     title = models.CharField(u'제목', max_length=200)

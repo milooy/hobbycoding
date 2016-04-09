@@ -8,8 +8,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 
 def meetup_list(request):
-    meetups = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-    return render(request, 'meetup_list.html', {'meetups':meetups})
+    meetup_list = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    return render(request, 'meetup_list.html', {'meetup_list':meetup_list})
 
 
 # TODO: comment 폼을 여기서 분리하고 싶은데..
@@ -25,7 +25,6 @@ def meetup_detail(request, pk):
             comment.meetup = meetup
             comment.save()
             return redirect('meetup.views.meetup_detail', pk=pk)
-
     return render(request, 'meetup_detail.html', {'meetup': meetup, 'cmtForm': form})
 
 
@@ -66,3 +65,18 @@ def meetup_join(request, pk):
     Meetup.objects.filter(pk=pk).update(views=F('views')+1)
     # return HttpResponseRedirect(request.GET.get('next')))
     return ''
+
+
+def meetup_like(request, pk):
+    meetup = get_object_or_404(Meetup, pk=pk) #TODO: 이렇게 밋업 가져오는걸 매번 메서드마다 해야하나
+    if request.method == 'GET':
+        form = CommentForm()
+    elif request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.meetup = meetup
+            comment.save()
+            return redirect('meetup.views.meetup_detail', pk=pk)
+    return render(request, 'meetup_detail.html', {'meetup': meetup, 'cmtForm': form})
