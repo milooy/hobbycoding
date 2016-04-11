@@ -3,7 +3,7 @@
     <h1>밋업 리스트</h1>
     <div class="row">
         {% for meetup in meetup_list %}
-            <div class="col s12 m6">
+            <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <a href="{% url 'meetup_detail' pk=meetup.pk %}">

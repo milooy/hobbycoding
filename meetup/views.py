@@ -73,5 +73,4 @@ def meetup_like(request, pk):
         meetup.likes.remove(request.user)
     else:
         meetup.likes.add(request.user)
-    meetup.save()
     return redirect('meetup.views.meetup_detail', pk=pk)

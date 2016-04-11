@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
-    hoco 만들기
-    <form method="POST" action="{% url 'meetup_new' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p><input type="submit"/></p>
-    </form>
+    <div class="row">
+        <h2>hoco 만들기</h2>
+        <div class="col s12">
+            <form method="POST" action="{% url 'meetup_new' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="map-container col s12">
+                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                    <div id="map"></div>
+                </div>
+                {{ form.as_p }}
+                <p><input type="submit"/></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/meetup.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoZZbHeYBE27WxRxrq_6szACs5vqiXMVo&libraries=places&callback=initAutocomplete"
+         async defer></script>
 {% endblock %}
