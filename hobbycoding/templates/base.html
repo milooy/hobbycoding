@@ -78,9 +78,15 @@
                         <li><a href="/login">로그인</a></li>
                     {% endif %}
                 </ul>
-
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#">Navbar Link</a></li>
+                    <li><a href="/meetup">meetups</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.email }}</a></li>
+                        <li><a href="/logout">로그아웃</a></li>
+                    {% else %}
+                        <li><a href="/signup">회원가입</a></li>
+                        <li><a href="/login">로그인</a></li>
+                    {% endif %}
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             </div>
