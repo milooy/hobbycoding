@@ -13,7 +13,16 @@ class MeetupEditForm(forms.ModelForm):
         # fields = '__all__' #에러나서 추가함
 
 
-class CommentForm(forms.ModelForm):
+class CommentForm2(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text',)
+
+
+class CommentForm(forms.Form):
+    name = forms.CharField()
+    message = forms.CharField(widget=forms.Textarea)
+
+    def send_email(self):
+        # send email using the self.cleaned_data dictionary
+        pass
