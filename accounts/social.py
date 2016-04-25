@@ -26,5 +26,5 @@ def update_avatar(backend, response, uid, user, *args, **kwargs):
     if backend.name == 'facebook':
         url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
         avatar = urlopen(url)
-        user.avatar.save(slugify(user.email + " social") + '.jpg', ContentFile(avatar.read()))
+        user.avatar.save(slugify(user.email + "_social") + '.jpg', ContentFile(avatar.read()))
         user.save()
