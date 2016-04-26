@@ -1,15 +1,27 @@
 # coding: utf-8
 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import EmptyPage
+from django.http import Http404
 from django.utils import timezone
+from django.views.generic import ListView
+
 from .models import Meetup
 from .forms import MeetupEditForm, CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
 
 
-def meetup_list(request):
-    meetup_list = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-    return render(request, 'meetup_list.html', {'meetup_list': meetup_list})
+class MeetupListView(ListView):
+    queryset = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    template_name = 'meetup_list.html'
+    paginate_by = 10
+    context_object_name = 'meetup_list'
+
+    def paginate_queryset(self, queryset, page_size):
+        try:
+            return super(MeetupListView, self).paginate_queryset(queryset, page_size)
+        except EmptyPage:
+            raise Http404
 
 
 # TODO: comment 폼을 여기서 분리하고 싶은데..

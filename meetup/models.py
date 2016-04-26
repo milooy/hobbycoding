@@ -10,6 +10,11 @@ class TagModel(models.Model):
 
 # 밋업
 class Meetup(models.Model):
+    class Meta:
+        verbose_name = u'밋업'
+        verbose_name_plural = verbose_name
+        ordering = ["-created_date"]
+
     # 관계
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'주최자', related_name='my_meetup')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='likes')
@@ -25,8 +30,8 @@ class Meetup(models.Model):
         self.modified_date = timezone.now()
         self.save()
 
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
 
 
 # 댓글
@@ -36,5 +41,5 @@ class Comment(models.Model):
     text = models.TextField(u'댓글', max_length=2000)
     created_date = models.DateTimeField(u'생성일', default=timezone.now)
 
-    def __str__(self):
-        return self.text
+    # def __str__(self):
+    #     return self.text
