@@ -1,5 +1,3 @@
-# coding: utf-8
-
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
 from django.http import Http404
@@ -9,6 +7,7 @@ from django.views.generic import ListView
 from .models import Meetup
 from .forms import MeetupEditForm, CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
+import django_filters
 
 
 class MeetupListView(ListView):
@@ -86,3 +85,17 @@ def meetup_like(request, pk):
     else:
         meetup.likes.add(request.user)
     return redirect('meetup.views.meetup_detail', pk=pk)
+
+
+class MeetupFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='contains')
+
+    class Meta:
+        model = Meetup
+        fields = ['title']
+        # together = ['title', 'tag']
+
+
+def meetup_filtered(request):
+    filter = MeetupFilter(request.GET, queryset=Meetup.objects.all())
+    return render(request, 'meetup_filtered_list.html', {'filter': filter})

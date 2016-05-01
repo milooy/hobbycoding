@@ -2,13 +2,21 @@
 {% block content %}
     <h1>밋업 리스트</h1>
     <div class="row">
+        <div class="col s12">
+            <form id="searchform" action="{% url 'meetup_filtered' %}" method="get" accept-charset="utf-8">
+                <input class="searchfield" id="searchbox" name="q" type="text" placeholder="Search">
+                <button class="searchbutton" type="submit">
+                    검색하기
+                </button>
+            </form>
+        </div>
         {% for meetup in meetup_list %}
             <div class="col s12 m4">
                 <div class="card">
                     <div class="card-image waves-effect waves-block waves-light">
                         <a href="{% url 'meetup_detail' pk=meetup.pk %}">
-                        <img class="activator" src="{{ meetup.image_file.url }}">
-                            </a>
+                            <img class="activator" src="{{ meetup.image_file.url }}">
+                        </a>
                     </div>
                     <div class="card-content">
                         <span class="card-title activator grey-text text-darken-4"><a href="{% url 'meetup_detail' pk=meetup.pk %}">{{ meetup.title }}</a><i class="material-icons right">more_vert</i></span>

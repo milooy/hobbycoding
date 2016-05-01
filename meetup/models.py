@@ -25,6 +25,7 @@ class Meetup(models.Model):
     image_file = models.ImageField(u'썸네일', upload_to='%Y/%m/%d')
     created_date = models.DateTimeField(u'생성일', default=timezone.now)
     modified_date = models.DateTimeField(u'수정일', blank=True, null=True)
+    # 태그 추가하기
 
     def modify(self):
         self.modified_date = timezone.now()
