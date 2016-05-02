@@ -4,23 +4,48 @@ from django.http import Http404
 from django.utils import timezone
 from django.views.generic import ListView
 
+from meetup.mixins import FilterMixin
 from .models import Meetup
 from .forms import MeetupEditForm, CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
 import django_filters
 
 
-class MeetupListView(ListView):
-    queryset = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+class MeetupFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='contains')
+
+    class Meta:
+        model = Meetup
+        fields = ['title']
+        # together = ['title', 'tag']
+
+
+class MeetupListView(ListView, FilterMixin):
+    """
+        Refer: https://github.com/carltongibson/django-filter/issues/245
+    """
+    # queryset = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
+    model = Meetup
     template_name = 'meetup_list.html'
     paginate_by = 10
     context_object_name = 'meetup_list'
+
+    filter_class = MeetupFilter
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(MeetupListView, self).get_queryset(*args, **kwargs)
+        return self.get_filter_class()(self.request.GET, queryset=qs)
 
     def paginate_queryset(self, queryset, page_size):
         try:
             return super(MeetupListView, self).paginate_queryset(queryset, page_size)
         except EmptyPage:
             raise Http404
+
+
+def meetup_filtered(request):
+    filter = MeetupFilter(request.GET, queryset=Meetup.objects.all())
+    return render(request, 'meetup_filtered_list.html', {'filter': filter})
 
 
 # TODO: comment 폼을 여기서 분리하고 싶은데..
@@ -87,15 +112,4 @@ def meetup_like(request, pk):
     return redirect('meetup.views.meetup_detail', pk=pk)
 
 
-class MeetupFilter(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr='contains')
 
-    class Meta:
-        model = Meetup
-        fields = ['title']
-        # together = ['title', 'tag']
-
-
-def meetup_filtered(request):
-    filter = MeetupFilter(request.GET, queryset=Meetup.objects.all())
-    return render(request, 'meetup_filtered_list.html', {'filter': filter})
