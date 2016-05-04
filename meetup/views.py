@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
+from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.utils import timezone
 from django.views.generic import ListView
@@ -24,7 +25,6 @@ class MeetupListView(ListView, FilterMixin):
     """
         Refer: https://github.com/carltongibson/django-filter/issues/245
     """
-    # queryset = Meetup.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
     model = Meetup
     template_name = 'meetup_list.html'
     paginate_by = 10
@@ -41,11 +41,6 @@ class MeetupListView(ListView, FilterMixin):
             return super(MeetupListView, self).paginate_queryset(queryset, page_size)
         except EmptyPage:
             raise Http404
-
-
-def meetup_filtered(request):
-    filter = MeetupFilter(request.GET, queryset=Meetup.objects.all())
-    return render(request, 'meetup_filtered_list.html', {'filter': filter})
 
 
 # TODO: comment 폼을 여기서 분리하고 싶은데..
@@ -92,7 +87,7 @@ def meetup_edit(request, pk):
             new_meetup.author = request.user
             new_meetup.published_date = timezone.now()
             new_meetup.save()
-            return redirect('meetup.views.meetup_detail', pk=new_meetup.pk)
+            return redirect(reverse('meetup_detail', kwargs={'pk':new_meetup.pk}))
 
     return render(request, 'meetup_edit.html', {'form': form})
 

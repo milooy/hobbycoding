@@ -9,7 +9,7 @@ class MeetupEditForm(forms.ModelForm):
     class Meta:
         model = Meetup
         exclude = ('created_date', 'modified_date', )
-        fields = ('title', 'desc', 'image_file', )
+        fields = ('title', 'desc', 'image_file', 'location', 'lat', 'lon')
         # fields = '__all__' #에러나서 추가함
 
 

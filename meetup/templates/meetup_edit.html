@@ -6,11 +6,29 @@
         <div class="col s12">
             <form method="POST" action="{% url 'meetup_new' %}" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="map-container col s12">
-                    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                    <div id="map"></div>
+                <p><label for="id_title">제목:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
+                <p><label for="id_desc">설명:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
+</textarea></p>
+                <p><label for="id_image_file">썸네일:</label> <input id="id_image_file" name="image_file" type="file" /></p>
+                <p><label for="id_location">장소 이름:</label> <input id="id_location" maxlength="50" name="location" type="text" /></p>
+                <p><label for="id_lat">위도:</label> <input id="id_lat" name="lat" step="any" type="number" /></p>
+                <p><label for="id_lon">경도:</label> <input id="id_lon" name="lon" step="any" type="number" /></p>
+                <div class="map_wrap">
+                    <div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
+
+                    <div id="menu_wrap" class="bg_white">
+                        <div class="option">
+                            <p>
+                            <form>
+                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                                <button type="submit" onclick="searchPlaces(); return false;">검색하기</button>
+                            </p>
+                        </div>
+                        <hr>
+                        <ul id="placesList"></ul>
+                        <div id="pagination"></div>
+                    </div>
                 </div>
-                {{ form.as_p }}
                 <p><input type="submit"/></p>
             </form>
         </div>
@@ -18,6 +36,6 @@
 {% endblock %}
 {% block js %}
     <script src="{% static 'js/meetup.js' %}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoZZbHeYBE27WxRxrq_6szACs5vqiXMVo&libraries=places&callback=initAutocomplete"
-         async defer></script>
+    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0560d4dbb9c299defdcf21de8cab125&libraries=services"></script>
+    <script src="{% static 'js/map.js' %}"></script>
 {% endblock %}

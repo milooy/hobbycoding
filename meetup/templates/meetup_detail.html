@@ -8,7 +8,14 @@
             <li>주최자: {{ meetup.author }}</li>
             <li>제목: {{ meetup.title }}</li>
             <li>설명: {{ meetup.desc }}</li>
-            <li>장소:
+            <li>태그:
+                {% for tag in meetup.tags.all %}
+                    <p>{{ tag.title }}</p>
+                {% empty %}
+                    <p>태그 없음</p>
+                {% endfor %}
+            </li>
+            <li>장소: {{ meetup.location }}
                 <div class="map_wrap">
                     <div id="map" style="width:750px;height:350px;position:relative;overflow:hidden;"></div>
 

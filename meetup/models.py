@@ -4,8 +4,8 @@ from django.utils import timezone
 
 
 # 태그
-class TagModel(models.Model):
-    title = models.CharField(max_length=20, verbose_name=u'태그')
+class Tag(models.Model):
+    title = models.CharField(u'태그', max_length=20)
 
 
 # 밋업
@@ -18,6 +18,7 @@ class Meetup(models.Model):
     # 관계
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'주최자', related_name='my_meetup')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='likes')
+    tags = models.ManyToManyField(Tag, verbose_name=u'태그', blank=True, related_name='tags')
 
     # 정보
     title = models.CharField(u'제목', max_length=200)
@@ -25,14 +26,16 @@ class Meetup(models.Model):
     image_file = models.ImageField(u'썸네일', upload_to='%Y/%m/%d')
     created_date = models.DateTimeField(u'생성일', default=timezone.now)
     modified_date = models.DateTimeField(u'수정일', blank=True, null=True)
-    # 태그 추가하기
+    location = models.CharField(u'장소 이름', max_length=50)
+    lon = models.FloatField(u'경도', blank=True, null=True)
+    lat = models.FloatField(u'위도', blank=True, null=True)
 
     def modify(self):
         self.modified_date = timezone.now()
         self.save()
 
-    # def __str__(self):
-    #     return self.title
+    def __str__(self):
+        return self.title
 
 
 # 댓글
