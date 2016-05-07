@@ -3,3 +3,4 @@ Pillow
 python-social-auth
 django-filter
 django-taggit
+django-taggit-templatetags2

@@ -4,5 +4,6 @@
     "fastclick": "latest",
     "moment": "~2.11.1",
     "html5shiv": "~3.7.3"
+//    "jqcloud2": "2.0.1"
   }
 }

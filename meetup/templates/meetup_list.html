@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+{% load taggit_templatetags2_tags %}
 {% block content %}
     <h1>밋업 리스트</h1>
     <div class="row">
@@ -7,6 +9,21 @@
                 <p><label for="id_title" class="">통합검색</label> <input id="id_title" name="query" type="text"></p>
                 <input type="submit">
             </form>
+        </div>
+        <div class="col s12">
+{#            {% include_taglist 'Meetup' %}#}
+{#            {% include_tagcloud 'Meetup' %}#}
+{#            {% get_taglist as tags for 'Meetup' %}#}
+            {% get_tagcloud as tags for 'Meetup' %}
+            {% for tag in tags %}
+                <a href="/meetup/?query={{ tag }}"><font size={{tag.weight|floatformat:0}}>{{ tag }}</font></a>
+            {% endfor %}
+            <ul>
+                {% for tag in tags %}
+                    <li>{{tag}} ({{tag.num_times}})</li>
+                {% endfor %}
+            </ul>
+
         </div>
         {% for meetup in meetup_list %}
             <div class="col s12 m4">

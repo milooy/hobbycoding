@@ -112,7 +112,7 @@ class MeetupFormView(FormView):
         new_meetup.author = self.request.user
         new_meetup.published_date = timezone.now()
         new_meetup.save()
-        # form.save(self.request)
+        form.save_m2m() # 태그 저장
         return super(MeetupFormView, self).form_valid(form)
 
 

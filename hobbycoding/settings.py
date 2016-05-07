@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'social.apps.django_app.default',
     'django_filters',
     'taggit',
+    'taggit_templatetags2',
 
     'hobbycoding',
     'meetup',
