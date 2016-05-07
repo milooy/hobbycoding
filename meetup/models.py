@@ -1,11 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
-
-# 태그
-class Tag(models.Model):
-    title = models.CharField(u'태그', max_length=20)
+from taggit.managers import TaggableManager
 
 
 # 밋업
@@ -18,7 +14,7 @@ class Meetup(models.Model):
     # 관계
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'주최자', related_name='my_meetup')
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='likes')
-    tags = models.ManyToManyField(Tag, verbose_name=u'태그', blank=True, related_name='tags')
+    tags = TaggableManager()
 
     # 정보
     title = models.CharField(u'제목', max_length=200)

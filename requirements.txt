@@ -2,3 +2,4 @@ django==1.9.2
 Pillow
 python-social-auth
 django-filter
+django-taggit

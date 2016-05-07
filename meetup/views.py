@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import Http404
 from django.utils import timezone
 from django.views.generic import ListView, FormView
@@ -13,12 +14,17 @@ import django_filters
 
 
 class MeetupFilter(django_filters.FilterSet):
-    title = django_filters.CharFilter(lookup_expr='contains')
+    query = django_filters.MethodFilter()
 
     class Meta:
         model = Meetup
-        fields = ['title']
-        # together = ['title', 'tag']
+        fields = ['query']
+
+    def filter_query(self, queryset, value):
+        return queryset.filter(
+            Q(title__contains=value) |
+            Q(tags__name__contains=value)
+        ).distinct()
 
 
 class MeetupListView(ListView, FilterMixin):

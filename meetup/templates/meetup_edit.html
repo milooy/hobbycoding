@@ -6,6 +6,7 @@
         <div class="col s12">
             <form method="POST" action="{% url 'meetup_new' %}" enctype="multipart/form-data">
                 {% csrf_token %}
+{#                {{ form.as_p }}#}
                 <p><label for="id_title">제목:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
                 <p>{{ form.title.errors|striptags }}</p>
                 <p><label for="id_desc">설명:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
@@ -19,6 +20,8 @@
                 <p>{{ form.lat.errors|striptags }}</p>
                 <p><label for="id_lon">경도:</label> <input id="id_lon" name="lon" step="any" type="number" /></p>
                 <p>{{ form.lon.errors|striptags }}</p>
+                <p><label for="id_tags" class="">Tags:</label> <input id="id_tags" name="tags" type="text"> <span class="helptext">A comma-separated list of tags.</span></p>
+                <p>{{ form.tags.errors|striptags }}</p>
                 <div class="map_wrap">
                     <div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
 
