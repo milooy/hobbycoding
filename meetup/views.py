@@ -3,7 +3,7 @@ from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.utils import timezone
-from django.views.generic import ListView
+from django.views.generic import ListView, FormView
 
 from meetup.mixins import FilterMixin
 from .models import Meetup
@@ -75,21 +75,39 @@ def meetup_new(request):
     return render(request, 'meetup_edit.html', {'form': form})
 
 
-def meetup_edit(request, pk):
-    meetup = get_object_or_404(Meetup, pk=pk)
-    if request.method == 'GET':
-        form = MeetupEditForm()
-    elif request.method == 'POST':
-        form = MeetupEditForm(request.POST, request.FILES)
+# def meetup_edit(request, pk):
+#     meetup = get_object_or_404(Meetup, pk=pk)
+#     if request.method == 'GET':
+#         form = MeetupEditForm()
+#     elif request.method == 'POST':
+#         form = MeetupEditForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             new_meetup = form.save(commit=False)
+#             new_meetup.author = request.user
+#             new_meetup.published_date = timezone.now()
+#             new_meetup.save()
+#             return redirect(reverse('meetup_detail', kwargs={'pk':new_meetup.pk}))
+#
+#     return render(request, 'meetup_edit.html', {'form': form})
 
-        if form.is_valid():
-            new_meetup = form.save(commit=False)
-            new_meetup.author = request.user
-            new_meetup.published_date = timezone.now()
-            new_meetup.save()
-            return redirect(reverse('meetup_detail', kwargs={'pk':new_meetup.pk}))
 
-    return render(request, 'meetup_edit.html', {'form': form})
+class MeetupFormView(FormView):
+    template_name = "meetup_edit.html"
+    form_class = MeetupEditForm
+
+    def get_success_url(self):
+        # return reverse('meetup_detail', kwargs={'pk':new_meetup.pk})
+        return reverse('meetup_list')
+
+    def form_valid(self, form):
+        print("Form is valid")
+        new_meetup = form.save(commit=False)
+        new_meetup.author = self.request.user
+        new_meetup.published_date = timezone.now()
+        new_meetup.save()
+        # form.save(self.request)
+        return super(MeetupFormView, self).form_valid(form)
 
 
 def meetup_join(request, pk):

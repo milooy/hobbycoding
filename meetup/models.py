@@ -23,7 +23,7 @@ class Meetup(models.Model):
     # 정보
     title = models.CharField(u'제목', max_length=200)
     desc = models.TextField(u'설명')
-    image_file = models.ImageField(u'썸네일', upload_to='%Y/%m/%d')
+    image_file = models.ImageField(u'썸네일', upload_to='%Y/%m/%d', blank=True, null=True)
     created_date = models.DateTimeField(u'생성일', default=timezone.now)
     modified_date = models.DateTimeField(u'수정일', blank=True, null=True)
     location = models.CharField(u'장소 이름', max_length=50)
@@ -33,6 +33,12 @@ class Meetup(models.Model):
     def modify(self):
         self.modified_date = timezone.now()
         self.save()
+
+    def image_url(self):
+        if self.image_file and hasattr(self.image_file, 'url'):
+            return self.image_file.url
+        else:
+            return '/static/img/meetup_default.jpg'
 
     def __str__(self):
         return self.title

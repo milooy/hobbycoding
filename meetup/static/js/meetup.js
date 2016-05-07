@@ -1,64 +1,47 @@
-function initAutocomplete() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -33.8688, lng: 151.2195},
-        zoom: 13,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+var Map = {
+    init: function() {
+        console.log("맵이 있다 ")
+        var mapContainer = document.getElementById('map'); // 지도를 표시할 div
+        var mapData = $('#map'); // 지도를 표시할 div
+        var lat = mapData.data('lat'),
+            lon = mapData.data('lon'),
+            locationName = mapData.data('location');
 
-    // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        var mapOption = {
+            center: new daum.maps.LatLng(lat, lon), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
 
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
-        searchBox.setBounds(map.getBounds());
-    });
+        var map = new daum.maps.Map(mapContainer, mapOption);
 
-    var markers = [];
-    // [START region_getplaces]
-    // Listen for the event fired when the user selects a prediction and retrieve
-    // more details for that place.
-    searchBox.addListener('places_changed', function() {
-        var places = searchBox.getPlaces();
+        // 마커가 표시될 위치입니다
+        var markerPosition  = new daum.maps.LatLng(lat, lon);
 
-        if (places.length == 0) {
-            return;
-        }
-
-        // Clear out the old markers.
-        markers.forEach(function(marker) {
-            marker.setMap(null);
+        // 마커를 생성합니다
+        var marker = new daum.maps.Marker({
+            position: markerPosition
         });
-        markers = [];
 
-        // For each place, get the icon, name and location.
-        var bounds = new google.maps.LatLngBounds();
-        places.forEach(function(place) {
-            var icon = {
-                url: place.icon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(17, 34),
-                scaledSize: new google.maps.Size(25, 25)
-            };
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
 
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-                map: map,
-                icon: icon,
-                title: place.name,
-                position: place.geometry.location
-            }));
+        var positionURL = 'http://map.daum.net/link/map/'+locationName+','+lat+','+lon;
+        var iwContent = '<div style="padding:5px;"><a href="'+positionURL+'" style="color:blue" target="_blank">'+locationName+'</a>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+            iwPosition = new daum.maps.LatLng(lat, lon); //인포윈도우 표시 위치입니다
 
-            if (place.geometry.viewport) {
-                // Only geocodes have viewport.
-                bounds.union(place.geometry.viewport);
-            } else {
-                bounds.extend(place.geometry.location);
-            }
+        // 인포윈도우를 생성합니다
+        var infowindow = new daum.maps.InfoWindow({
+            position : iwPosition,
+            content : iwContent
         });
-        map.fitBounds(bounds);
-    });
-    // [END region_getplaces]
+
+        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+        infowindow.open(map, marker);
+    }
 }
+
+$(function() {
+    if($('#map').data('lat')) {
+        Map.init();
+    }
+});

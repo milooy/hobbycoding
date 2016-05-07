@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     hoco 디테일
-    <img src='{{ meetup.image_file.url }}'>
+    <img src='{{ meetup.image_url }}'>
     <div class="meetup-detail">
         <ul>
             <li>주최자: {{ meetup.author }}</li>
@@ -16,22 +16,9 @@
                 {% endfor %}
             </li>
             <li>장소: {{ meetup.location }}
-                <div class="map_wrap">
-                    <div id="map" style="width:750px;height:350px;position:relative;overflow:hidden;"></div>
-
-                    <div id="menu_wrap" class="bg_white">
-                        <div class="option">
-                            <p>
-                            <form onsubmit="searchPlaces(); return false;">
-                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
-                                <button type="submit">검색하기</button>
-                            </p>
-                        </div>
-                        <hr>
-                        <ul id="placesList"></ul>
-                        <div id="pagination"></div>
-                    </div>
-                </div>
+                {% if meetup.lat %}
+                    <div id="map" data-lat="{{ meetup.lat }}" data-lon="{{ meetup.lon }}" data-location="{{ meetup.location }}"></div>
+                {% endif %}
             </li>
         </ul>
     </div>
@@ -66,6 +53,6 @@
     </div>
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0560d4dbb9c299defdcf21de8cab125&libraries=services"></script>
-    <script src="{% static 'js/map.js' %}"></script>
+    <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0560d4dbb9c299defdcf21de8cab125"></script>
+    <script src="{% static 'js/meetup.js' %}"></script>
 {% endblock %}
