@@ -1,30 +1,63 @@
 @import (once) "var";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 @header-height: 200px;
 @nav-height: 60px;
 
-nav.nav-main {
-  height: @nav-height;
-  //background: transparent;
-  z-index: 999 !important;
-  background: rgba(255, 255, 255, 0.7);
+body {
+  font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
+  color: @font-primary;
 }
 
+//*-- 네비게이션 *--//
+nav.nav-main {
+  box-shadow: none;
+  height: @nav-height;
+  z-index: 999 !important;
+  background: rgba(255, 255, 255, 0.7);
+
+  #logo-container {
+    img {
+      width: 160px;
+      margin-top: 7px;
+    }
+  }
+  ul#nav-top {
+    li.user-info {
+      img {
+        width: 30px;
+      }
+    }
+  }
+  ul#nav-mobile {
+    li.user-info {
+      img {
+        width: 30px;
+      }
+    }
+  }
+  &.nav-dark { //네비게이션 흑화 버전
+    a, ul a {
+      color : @font-primary;
+    }
+  }
+  &.nav-light { //네비게이션 천사 버전
+    a, ul a {
+      color : white;
+    }
+  }
+}
+
+//*-- 상단 헤더 *--//
 section.page-header {
   width: 100%;
   height: @header-height;
-  padding-top: @nav-height;
+  padding-top: @nav-height; // shy-navbar가 자동으로 absolute 잡아준다
   z-index: -1;
-  //position: absolute;
-  //top: 0;
-
   background-color: #EAEAEA;
 }
-.header-margin {
-  //margin-top: @header-height - @nav-height;
-  //margin-top: 10px;
-}
 
+//*-- 푸터 *--//
 footer.page-footer {
   background: #505050;
 }
