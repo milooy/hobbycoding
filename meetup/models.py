@@ -38,14 +38,3 @@ class Meetup(models.Model):
 
     def __str__(self):
         return self.title
-
-
-# 댓글
-# class Comment(models.Model):
-#     meetup = models.ForeignKey(Meetup, related_name='comments')
-#     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'이름', related_name='comments_author')
-#     text = models.TextField(u'댓글', max_length=2000)
-#     created_date = models.DateTimeField(u'생성일', default=timezone.now)
-#
-#     def __str__(self):
-#         return self.text

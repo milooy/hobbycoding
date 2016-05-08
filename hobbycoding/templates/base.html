@@ -27,7 +27,7 @@
     <meta property="og:description"
           content="{% block og_description %}취미로 코딩하기, HOBBYCODING{% endblock %}"/>
     <meta property="og:image"
-          content="{% block og_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
+          content="{% block og_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
     <!-- twitter -->
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:url" content="{% block tw_url %}{{ SITE_URL }}{% endblock %}"/>
@@ -35,7 +35,7 @@
     <meta name="twitter:description"
           content="{% block tw_description %}취미로 코딩하기, HOBBYCODING{% endblock %}"/>
     <meta name="twitter:image:src"
-          content="{% block tw_image %}{{ SITE_URL }}{% static 'image/test.jpg' %}{% endblock %}"/>
+          content="{% block tw_image %}{{ SITE_URL }}{% static 'img/test.jpg' %}{% endblock %}"/>
     {% block base-css %}
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
@@ -67,8 +67,9 @@
 </script>
 {% block body %}
     {% block nav-main %}
-        <nav class="nav-main teal lighten-4" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">HobbyCoding</a>
+        <nav class="nav-main nav-dark" role="navigation">
+{#            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">HobbyCoding</a>#}
+            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo-dark2.png' %}"/></a>
                 <ul id="nav-top" class="right hide-on-med-and-down">
                     <li><a href="/meetup">meetups</a></li>
                     {% if user.is_authenticated %}
@@ -93,12 +94,19 @@
             </div>
         </nav>
     {% endblock %}
-    <div class="container">
+    {% block page-header %}
+        <section class="page-header">
+            <div class="container">
+                <h2 class="header-title">{% block header-title %}내일 뭐하지?{% endblock %}</h2>
+            </div>
+        </section>
+    {% endblock %}
+    <div class="container header-margin">
         {% block content %}
         {% endblock %}
     </div>
     {% block page-footer %}
-        <footer class="page-footer teal darken-2">
+        <footer class="page-footer">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -135,6 +143,7 @@
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <script src="{% static 'components/fastclick/lib/fastclick.js' %}"></script>
+    <script src="{% static 'components/shy-navbar/shy-navbar.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
     {% block js %}{% endblock %}
 {% endblock %}

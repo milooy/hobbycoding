@@ -1,2 +1,30 @@
 @import (once) "var";
 
+@header-height: 200px;
+@nav-height: 60px;
+
+nav.nav-main {
+  height: @nav-height;
+  //background: transparent;
+  z-index: 999 !important;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+section.page-header {
+  width: 100%;
+  height: @header-height;
+  padding-top: @nav-height;
+  z-index: -1;
+  //position: absolute;
+  //top: 0;
+
+  background-color: #EAEAEA;
+}
+.header-margin {
+  //margin-top: @header-height - @nav-height;
+  //margin-top: 10px;
+}
+
+footer.page-footer {
+  background: #505050;
+}

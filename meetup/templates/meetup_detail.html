@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% block header-title %}{{ meetup.title }}{% endblock %}
 {% block content %}
     hoco 디테일
     <img src='{{ meetup.image_url }}'>
