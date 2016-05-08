@@ -11,10 +11,16 @@ body {
 
 //*-- 네비게이션 *--//
 nav.nav-main {
-  box-shadow: none;
-  height: @nav-height;
+  position: absolute;
   z-index: 999 !important;
+  height: @nav-height;
   background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+
+  &.nav-transparent {
+    background: transparent;
+    transition: background-color 1s ease;
+  }
 
   #logo-container {
     img {
