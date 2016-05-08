@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block header-image %}{{ meetup.image_url }}{% endblock %}
-{% block header-title %}{{ meetup.title }}{% endblock %}
+{% block header-title %}{% endblock %}
 {% block content %}
-    <img src='{{ meetup.image_url }}'>
+    <section class="title-section">
+        <div class="image-container">
+            <img src='{{ meetup.image_url }}'>
+        </div>
+        <div class="meta-container">
+            <h2>{{ meetup.title }}</h2>
+            <div class="tag-container">
+                {% for tag in meetup.tags.all %}
+                    <div class="tag-box"># {{ tag }}</div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
     <div class="meetup-detail">
         <ul>
             <li>주최자: {{ meetup.author }}</li>

@@ -77,13 +77,12 @@
             <li><a href="/logout">로그아웃</a></li>
         </ul>
         <nav class="nav-main nav-dark nav-transparent" role="navigation">
-            {#            <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">HobbyCoding</a>#}
             <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo-dark2.png' %}"/></a>
                 <ul id="nav-top" class="right hide-on-med-and-down">
                     <li><a href="/meetup">meetups</a></li>
                     {% if user.is_authenticated %}
                         <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
-                            <img src="{{ user.avatar.url }}"/>{{ user.email }}
+                            {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
                             <i class="material-icons right">arrow_drop_down</i></a></li>
                     {% else %}
                         <li><a href="/signup">회원가입</a></li>
@@ -93,7 +92,7 @@
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="/meetup">meetups</a></li>
                     {% if user.is_authenticated %}
-                        <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.email }}</a></li>
+                        <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
                     {% else %}
                         <li><a href="/signup">회원가입</a></li>
                         <li><a href="/login">로그인</a></li>

@@ -4,9 +4,14 @@
 @header-height: 200px;
 @nav-height: 60px;
 
+//*-- 공용 *--//
 body {
   font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Nanum Barun Gothic", "Malgun Gothic", "돋움", Dotum, sans-serif;
   color: @font-primary;
+  font-weight: 300;
+}
+h2 {
+  font-size: 2.5rem;
 }
 
 //*-- 네비게이션 *--//
@@ -32,6 +37,9 @@ nav.nav-main {
     li.user-info {
       img {
         width: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
       }
     }
   }
@@ -39,6 +47,9 @@ nav.nav-main {
     li.user-info {
       img {
         width: 30px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
       }
     }
   }
@@ -78,6 +89,17 @@ section.page-header {
     -webkit-transform: translate3d(0, 0, 0);
   }
 }
+
+//*-- 꾸밈 요소 *--//
+.tag-box {
+  display: inline-block;
+  padding: 2.5px 6px;
+  border-radius: 8px;
+  margin-right: 3px;
+  color: white;
+  background: @mid-gray;
+}
+
 
 //*-- 푸터 *--//
 footer.page-footer {

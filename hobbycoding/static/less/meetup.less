@@ -1,27 +1,27 @@
-/*-- 헤더 블러 --*/
-.hero {
-  position: relative;
-  width: 100%;
-  padding: 2em 0;
-  overflow: hidden; // Hide overflow to contain the background
-}
-.hero__background {
-  position: absolute;
-  top: -50%;
-  left: 0;
-  width: 200%;
-  // Where the magic happens
-  -webkit-filter: blur(100px);
-  -webkit-transform: translate3d(0, 0, 0);
-}
-.hero__title {
-  position: relative;
-  text-align: center;
-  font-size: 5em;
-  color: white;
-}
+@import (once) "var";
 
+/*-- 최상단 사진, 모임 제목 --*/
+section.title-section {
+  margin-top: -130px;
+  .image-container {
+    img {
+      width: 210px;
+    }
+    @media @l-m, @l-l {
+      display: inline-block;
+    }
+  }
+  .meta-container {
+    h2 {
 
+    }
+    @media @l-m, @l-l {
+      display: inline-block;
+      vertical-align: top;
+      margin: -6px 0 0 24px;
+    }
+  }
+}
 
 /*-- 댓글 --*/
 .comments-container {
