@@ -32,27 +32,31 @@
         {% endfor %}
     </div>
     <div class="comments-container">
-        <div class="add-comments">
-            <h3>댓글 달기</h3>
-            <img src="{{ user.avatar.url }}"/>{{ user.nickname }}
-            <form method="POST" class="post-form">
-                {% csrf_token %}
-                {{ cmtForm.as_p }}
-                <button type="submit" class="save btn btn-default">Send</button>
-            </form>
-        </div>
-        {% for comment in meetup.comments.all %}
-            <div class="comment">
-                <div class="date">{{ comment.created_date }}</div>
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
-            </div>
-        {% empty %}
-            <p>댓글이 없습니다</p>
-        {% endfor %}
     </div>
+{#    <div class="comments-container">#}
+{#        <div class="add-comments">#}
+{#            <h3>댓글 달기</h3>#}
+{#            <img src="{{ user.avatar.url }}"/>{{ user.nickname }}#}
+{#            <form method="POST" class="post-form">#}
+{#                {% csrf_token %}#}
+{#                {{ cmtForm.as_p }}#}
+{#                <button type="submit" class="save btn btn-default">Send</button>#}
+{#            </form>#}
+{#        </div>#}
+{#        {% for comment in meetup.comments.all %}#}
+{#            <div class="comment">#}
+{#                <div class="date">{{ comment.created_date }}</div>#}
+{#                <strong>{{ comment.author }}</strong>#}
+{#                <p>{{ comment.text|linebreaks }}</p>#}
+{#            </div>#}
+{#        {% empty %}#}
+{#            <p>댓글이 없습니다</p>#}
+{#        {% endfor %}#}
+{#    </div>#}
 {% endblock %}
 {% block js %}
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0560d4dbb9c299defdcf21de8cab125"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
     <script src="{% static 'js/meetup.js' %}"></script>
+    <script src="{% static 'js/comment.js' %}"></script>
 {% endblock %}

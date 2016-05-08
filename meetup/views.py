@@ -8,7 +8,8 @@ from django.views.generic import ListView, FormView
 
 from meetup.mixins import FilterMixin
 from .models import Meetup
-from .forms import MeetupEditForm, CommentForm
+# from .forms import MeetupEditForm, CommentForm
+from .forms import MeetupEditForm
 from django.shortcuts import render, get_object_or_404, redirect
 import django_filters
 
@@ -52,17 +53,18 @@ class MeetupListView(ListView, FilterMixin):
 # TODO: comment 폼을 여기서 분리하고 싶은데..
 def meetup_detail(request, pk):
     meetup = get_object_or_404(Meetup, pk=pk)
-    if request.method == 'GET':
-        form = CommentForm()
-    elif request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.meetup = meetup
-            comment.save()
-            return redirect('meetup.views.meetup_detail', pk=pk)
-    return render(request, 'meetup_detail.html', {'meetup': meetup, 'cmtForm': form})
+    # if request.method == 'GET':
+    #     form = CommentForm()
+    # elif request.method == 'POST':
+    #     form = CommentForm(request.POST)
+    #     if form.is_valid():
+    #         comment = form.save(commit=False)
+    #         comment.author = request.user
+    #         comment.meetup = meetup
+    #         comment.save()
+    #         return redirect('meetup.views.meetup_detail', pk=pk)
+    # return render(request, 'meetup_detail.html', {'meetup': meetup, 'cmtForm': form})
+    return render(request, 'meetup_detail.html', {'meetup': meetup})
 
 
 @login_required

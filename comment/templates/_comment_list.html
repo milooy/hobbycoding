@@ -1,0 +1,21 @@
+<h4 class="title">{{ meetup.title }}의 댓글</h4>
+<form id="comment" method="POST">
+    {% csrf_token %}
+    <ul>
+        <li>{{ form.text }}</li>
+        <li>{{ form.text.errors|striptags }}</li>
+    </ul>
+    <input type="submit" value="submit" />
+</form>
+{% for comment in comment_list %}
+    <div class="comment">
+        <div class="date">{{ comment.created_date }}</div>
+        <img class="avatar" src="{{ comment.author.avatar.url }}"/>
+        <strong>{{ comment.author }}</strong>
+        <strong>{{ comment.author.nickname }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>리뷰가 없습니다</p>
+{% endfor %}
+{% include '_pagination.html' %}

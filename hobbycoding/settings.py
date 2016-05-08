@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'hobbycoding',
     'meetup',
     'accounts',
+    'comment',
 ]
 
 AUTHENTICATION_BACKENDS = (

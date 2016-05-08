@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from . import views
+from comment import views as comment_view
 # from taggit_templatetags2 import urls as taggit_templatetags2_urls
 from taggit_templatetags2 import urls as taggit_templatetags2_urls
 
@@ -14,6 +15,7 @@ urlpatterns = [
 
     url(r'^meetup/join/(?P<pk>\d+)/$', views.meetup_join, name='meetup_join'),
     url(r'^meetup/(?P<pk>\d+)/like/$', views.meetup_like, name='meetup_like'),
+    url(r'^meetup/(?P<pk>\d+)/comment/$', comment_view.CommentView.as_view(), name='meetup_comment'),
 
     # url(r'^tags/', include(taggit_templatetags2_urls)),
     url(r'^meetup/?(?P<tag_id>.*)/(?P<tag_slug>.*)/',
