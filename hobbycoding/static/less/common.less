@@ -36,6 +36,9 @@ nav.nav-main {
       }
     }
   }
+  ul#account-dropdown {
+    top: @nav-height !important;
+  }
   &.nav-dark { //네비게이션 흑화 버전
     a, ul a {
       color : @font-primary;
@@ -55,6 +58,19 @@ section.page-header {
   padding-top: @nav-height; // shy-navbar가 자동으로 absolute 잡아준다
   z-index: -1;
   background-color: #EAEAEA;
+  position: relative;
+  overflow: hidden;
+
+  // 이미지 블러: http://zurb.com/article/1325/create-blurred-images-with-html5-canvas
+  .blur_background {
+    position: absolute;
+    z-index: -1;
+    top: -110%;
+    left: 0;
+    width: 100%;
+    -webkit-filter: blur(95px);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 }
 
 //*-- 푸터 *--//
