@@ -1,11 +1,17 @@
-<h4 class="title">{{ meetup.title }}의 댓글</h4>
+<div class="comments-header">
+    <h3 class="title">Comments</h3>
+    {% if comment_list|length|get_digit:"-1" > 0 %}
+        <span class="length">( {{ comment_list|length }} )</span>
+    {% endif %}
+</div>
 <form id="comment" method="POST">
     {% csrf_token %}
-    <ul>
-        <li>{{ form.text }}</li>
-        <li>{{ form.text.errors|striptags }}</li>
-    </ul>
-    <input type="submit" value="submit" />
+    <div class="wrapper">
+        <img src="{{ user.avatar.url }}"/>
+        <div class="textarea">{{ form.text }}</div>
+        <input type="submit" value="전송" />
+        <div class="error">{{ form.text.errors|striptags }}</div>
+    </div>
 </form>
 <div class="comment-list">
     {% for comment in comment_list %}
