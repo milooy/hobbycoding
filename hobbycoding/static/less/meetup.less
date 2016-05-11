@@ -36,9 +36,6 @@ section.title-section {
     .wrapper {
       display: -webkit-flex;
       display: flex;
-      img {
-
-      }
       .textarea {
         -webkit-flex: 1;
         flex: 1;
@@ -52,8 +49,8 @@ section.title-section {
           resize: none;
           &:focus {
             outline: none !important;
-                border: none;
-                box-shadow: 0 0 10px rgba(54, 79, 107, 0.28);
+            border: none;
+            box-shadow: 0 0 10px rgba(54, 79, 107, 0.28);
           }
         }
       }
@@ -64,7 +61,6 @@ section.title-section {
         color: white;
         border: none;
         border-radius: 5rem;
-
         &:hover {
           background: lighten(@primary, 8%);
           transition: @background-transition;
@@ -72,11 +68,31 @@ section.title-section {
       }
     }
   }
-  img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
+  div.comment-list {
+    div.comment {
+      display: -webkit-flex;
+      display: flex;
+      margin-top: 0.75rem;
+      div.comment-header {
+        -webkit-flex: 1;
+        flex: 1;
+        padding: 0 1.3rem;
+        line-height: 0.8rem;
+        .nickname {
+          display: inline-block;
+          font-weight: 500;
+        }
+        .date {
+          display: inline-block;
+          color: @mid-gray;
+        }
+        .comment-text {
+
+        }
+      }
+    }
   }
+
   .pagination {
     display: none;
   }

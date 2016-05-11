@@ -7,7 +7,7 @@
 <form id="comment" method="POST">
     {% csrf_token %}
     <div class="wrapper">
-        <img src="{{ user.avatar.url }}"/>
+        <img class="avatar" src="{{ user.avatar.url }}"/>
         <div class="textarea">{{ form.text }}</div>
         <input type="submit" value="전송" />
         <div class="error">{{ form.text.errors|striptags }}</div>
@@ -16,11 +16,12 @@
 <div class="comment-list">
     {% for comment in comment_list %}
         <div class="comment">
-            <div class="date">{{ comment.created_date }}</div>
             <img class="avatar" src="{{ comment.author.avatar.url }}"/>
-            <strong>{{ comment.author }}</strong>
-            <strong>{{ comment.author.nickname }}</strong>
-            <p>{{ comment.text|linebreaks }}</p>
+            <div class="comment-header">
+                <div class="nickname">{{ comment.author.nickname }}</div>
+                <div class="date">{{ comment.created_date }}</div>
+                <div class="comment-text">{{ comment.text|linebreaks }}</div>
+            </div>
         </div>
     {% empty %}
         <p>리뷰가 없습니다</p>
