@@ -21,7 +21,7 @@
         <ul>
             <li>주최자: {{ meetup.author }}</li>
             <li>제목: {{ meetup.title }}</li>
-            <li>설명: {{ meetup.desc }}</li>
+            <li>설명: {{ meetup.desc|linebreaks }}</li>
             <li>태그:
                 {% for tag in meetup.tags.all %}
                     <span>{{ tag }}</span>
@@ -38,11 +38,20 @@
     </div>
     <div class="likes-container">
         <button><a href="{% url 'meetup_like' meetup.id %}">관심 버튼</a></button>
-        관심자 목록: {{ meetup.likes.all }}
-        {% for like in meetup.likes.all %}
-            <p>{{ like.nickname }}</p>
+        관심자 목록: {{ meetup.like_users.all }}
+        {% for user in meetup.like_users.all %}
+            <p>{{ user.nickname }}</p>
         {% empty %}
             <p>노관심</p>
+        {% endfor %}
+    </div>
+    <div class="join-container">
+        <button><a href="{% url 'meetup_join' meetup.id %}">참여 버튼</a></button>
+        참여자 목록: {{ meetup.join_users.all }}
+        {% for user in meetup.join_users.all %}
+            <p>{{ user.nickname }}</p>
+        {% empty %}
+            <p>노조인</p>
         {% endfor %}
     </div>
     <div class="divider"></div>

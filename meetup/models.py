@@ -13,7 +13,8 @@ class Meetup(models.Model):
 
     # 관계
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=u'주최자', related_name='my_meetup')
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='likes')
+    join_users = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'참석', blank=True, related_name='join_meetup')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name=u'관심', blank=True, related_name='like_meetup')
     tags = TaggableManager()
 
     # 정보
