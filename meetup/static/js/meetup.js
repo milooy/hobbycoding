@@ -38,9 +38,30 @@ var Map = {
         // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
         infowindow.open(map, marker);
     }
-}
+};
+
+var Users = {
+    init: function() {
+        this.get('');
+        $('button.like').on('click',function() {
+            Users.get('like');
+        });
+        $('button.join').on('click',function() {
+            Users.get('join');
+        });
+
+    },
+    get: function(arg) {
+        var arg = arg? '?q=' + arg : '';
+        console.log(location.pathname+"user/"+arg)
+        $.get(location.pathname+"user/"+arg, function(data) {
+            $(".users-container").html(data);
+        });
+    },
+};
 
 $(function() {
+    Users.init();
     if($('#map').data('lat')) {
         Map.init();
     }

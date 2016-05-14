@@ -1,0 +1,16 @@
+<div class="likes-container">
+    관심자 목록: {{ meetup.like_users.all }}
+    {% for user in meetup.like_users.all %}
+        <p>{{ user.nickname }}</p>
+    {% empty %}
+        <p>노관심</p>
+    {% endfor %}
+</div>
+<div class="join-container">
+    참여자 목록: {{ meetup.join_users.all }}
+    {% for user in meetup.join_users.all %}
+        <p>{{ user.nickname }}</p>
+    {% empty %}
+        <p>노조인</p>
+    {% endfor %}
+</div>

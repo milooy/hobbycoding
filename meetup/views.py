@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.utils import timezone
 from django.views.generic import ListView, FormView
 
@@ -113,16 +113,36 @@ class MeetupFormView(FormView):
 #     return ''
 
 
-def meetup_like(request, pk):
+def meetup_user(request, pk):
     meetup = get_object_or_404(Meetup, pk=pk) # TODO: 이렇게 밋업 가져오는걸 매번 메서드마다 해야하나
-    if request.user in meetup.like_users.all():
-        meetup.like_users.remove(request.user)
-    else:
-        meetup.like_users.add(request.user)
-    return redirect('meetup.views.meetup_detail', pk=pk)
+    print(u"밋업 왔당")
+    print(request.GET.get('q', ''))
+    print(meetup.like_users.all())
+    if request.GET.get('q', '') == 'like':
+        print("라이크")
+        if request.user in meetup.like_users.all():
+            meetup.like_users.remove(request.user)
+        else:
+            meetup.like_users.add(request.user)
+    elif request.GET.get('q', '') == 'join':
+        print("조인")
+        if request.user in meetup.join_users.all():
+            meetup.join_users.remove(request.user)
+        else:
+            meetup.join_users.add(request.user)
+    # return redirect('meetup.views.meetup_detail', pk=pk)
+    # return HttpResponse(meetup.like_users.all())
+    # if request.method == 'GET':
+    #     print('like')
+    # elif request.method == 'POST':
+    #     if request.user in meetup.like_users.all():
+    #         meetup.like_users.remove(request.user)
+    #     else:
+    #         meetup.like_users.add(request.user)
+    return render(request, '_meetup_users.html', {'meetup': meetup})
 
 def meetup_join(request, pk):
-    meetup = get_object_or_404(Meetup, pk=pk) # TODO: 이렇게 밋업 가져오는걸 매번 메서드마다 해야하나
+    meetup = get_object_or_404(Meetup, pk=pk)
     if request.user in meetup.join_users.all():
         meetup.join_users.remove(request.user)
     else:

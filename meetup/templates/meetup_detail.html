@@ -18,6 +18,11 @@
 
     </section>
     <div class="meetup-detail">
+{#        <button><a href="{% url 'meetup_like' meetup.id %}">관심 버튼</a></button>#}
+{#        <button><a href="{% url 'meetup_join' meetup.id %}">참여 버튼</a></button>#}
+        {% csrf_token %}
+        <button class="like">관심 버튼</button>
+        <button class="join">참여 버튼</button>
         <ul>
             <li>주최자: {{ meetup.author }}</li>
             <li>제목: {{ meetup.title }}</li>
@@ -36,24 +41,7 @@
             </li>
         </ul>
     </div>
-    <div class="likes-container">
-        <button><a href="{% url 'meetup_like' meetup.id %}">관심 버튼</a></button>
-        관심자 목록: {{ meetup.like_users.all }}
-        {% for user in meetup.like_users.all %}
-            <p>{{ user.nickname }}</p>
-        {% empty %}
-            <p>노관심</p>
-        {% endfor %}
-    </div>
-    <div class="join-container">
-        <button><a href="{% url 'meetup_join' meetup.id %}">참여 버튼</a></button>
-        참여자 목록: {{ meetup.join_users.all }}
-        {% for user in meetup.join_users.all %}
-            <p>{{ user.nickname }}</p>
-        {% empty %}
-            <p>노조인</p>
-        {% endfor %}
-    </div>
+    <div class="users-container"></div>
     <div class="divider"></div>
     <div class="comments-container"></div>
 {% endblock %}
