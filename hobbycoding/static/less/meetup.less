@@ -5,7 +5,8 @@ section.title-section {
   margin-top: -130px;
   .image-container {
     img {
-      width: 210px;
+      width: 200px;
+      height: 200px;
     }
     @media @l-m, @l-l {
       display: inline-block;
@@ -18,7 +19,50 @@ section.title-section {
     @media @l-m, @l-l {
       display: inline-block;
       vertical-align: top;
-      margin: -6px 0 0 24px;
+      margin: 2px 0 0 15px;
+    }
+  }
+}
+
+/*-- 밋업 상세 --*/
+div.meetup-detail {
+  .button-container {
+    margin-top: -60px;
+    margin-left: 218px;
+    button.join {
+      width: 13rem;
+      //float: left;
+      background: @warning;
+      &:before {
+        content: "참여하기";
+      }
+      &.joined {
+        background: gray;
+        &:before {
+          content: "참여 신청함";
+        }
+      }
+    }
+    button.like {
+      background: transparent;
+      border: none;
+      margin-left: 0.6rem;
+      i {
+        color: @mid-gray;
+        font-size: 2.5rem;
+        vertical-align: middle;
+        &:before {
+          content: "favorite_border";
+        }
+      }
+      &.liked {
+        i {
+          color: @warning;
+          &:before {
+            content: "favorite";
+          }
+        }
+      }
     }
   }
 }
@@ -92,7 +136,6 @@ section.title-section {
       }
     }
   }
-
   .pagination {
     display: none;
   }

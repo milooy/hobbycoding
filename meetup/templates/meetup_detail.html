@@ -15,14 +15,12 @@
                 {% endfor %}
             </div>
         </div>
-
     </section>
     <div class="meetup-detail">
-{#        <button><a href="{% url 'meetup_like' meetup.id %}">관심 버튼</a></button>#}
-{#        <button><a href="{% url 'meetup_join' meetup.id %}">참여 버튼</a></button>#}
-        {% csrf_token %}
-        <button class="like">관심 버튼</button>
-        <button class="join">참여 버튼</button>
+        <div class="button-container">
+            <button class="join {{ is_join }} waves-effect waves-dark btn-large"></button>
+            <button class="like {{ is_like }}"><i class="material-icons"></i></button>
+        </div>
         <ul>
             <li>주최자: {{ meetup.author }}</li>
             <li>제목: {{ meetup.title }}</li>

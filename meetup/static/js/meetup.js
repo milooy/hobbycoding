@@ -40,20 +40,22 @@ var Map = {
     }
 };
 
+/*-- 밋업 참여/관심 버튼 ajax --*/
 var Users = {
     init: function() {
         this.get('');
         $('button.like').on('click',function() {
             Users.get('like');
+            $(this).toggleClass('liked');
         });
         $('button.join').on('click',function() {
             Users.get('join');
+            $(this).toggleClass('joined');
         });
 
     },
     get: function(arg) {
         var arg = arg? '?q=' + arg : '';
-        console.log(location.pathname+"user/"+arg)
         $.get(location.pathname+"user/"+arg, function(data) {
             $(".users-container").html(data);
         });

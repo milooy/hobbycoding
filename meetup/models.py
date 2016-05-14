@@ -27,6 +27,9 @@ class Meetup(models.Model):
     lon = models.FloatField(u'경도', blank=True, null=True)
     lat = models.FloatField(u'위도', blank=True, null=True)
 
+    def __str__(self):
+        return self.title
+
     def modify(self):
         self.modified_date = timezone.now()
         self.save()
@@ -36,6 +39,3 @@ class Meetup(models.Model):
             return self.image_file.url
         else:
             return '/static/img/meetup_default.jpg'
-
-    def __str__(self):
-        return self.title

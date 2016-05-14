@@ -2,18 +2,18 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import Http404, HttpResponse
+from django.http import Http404
 from django.utils import timezone
 from django.views.generic import ListView, FormView
 
 from meetup.mixins import FilterMixin
 from .models import Meetup
-# from .forms import MeetupEditForm, CommentForm
 from .forms import MeetupEditForm
 from django.shortcuts import render, get_object_or_404, redirect
 import django_filters
 
 
+# 밋업 검색하기
 class MeetupFilter(django_filters.FilterSet):
     query = django_filters.MethodFilter()
 
@@ -53,7 +53,9 @@ class MeetupListView(ListView, FilterMixin):
 # TODO: comment 폼을 여기서 분리하고 싶은데..
 def meetup_detail(request, pk):
     meetup = get_object_or_404(Meetup, pk=pk)
-    return render(request, 'meetup_detail.html', {'meetup': meetup})
+    is_join = 'joined' if request.user in meetup.join_users.all() else ''
+    is_like = 'liked' if request.user in meetup.like_users.all() else ''
+    return render(request, 'meetup_detail.html', {'meetup': meetup, 'is_join': is_join, 'is_like': is_like})
 
 
 @login_required
@@ -107,47 +109,19 @@ class MeetupFormView(FormView):
         return super(MeetupFormView, self).form_valid(form)
 
 
-# def meetup_join(request, pk):
-#     Meetup.objects.filter(pk=pk).update(views=F('views')+1)
-#     # return HttpResponseRedirect(request.GET.get('next')))
-#     return ''
-
-
+# 밋업 참여/관심
 def meetup_user(request, pk):
     meetup = get_object_or_404(Meetup, pk=pk) # TODO: 이렇게 밋업 가져오는걸 매번 메서드마다 해야하나
-    print(u"밋업 왔당")
-    print(request.GET.get('q', ''))
-    print(meetup.like_users.all())
-    if request.GET.get('q', '') == 'like':
-        print("라이크")
+    q = request.GET.get('q', '')
+    if q == 'like':
         if request.user in meetup.like_users.all():
             meetup.like_users.remove(request.user)
         else:
             meetup.like_users.add(request.user)
-    elif request.GET.get('q', '') == 'join':
-        print("조인")
+    elif q == 'join':
         if request.user in meetup.join_users.all():
             meetup.join_users.remove(request.user)
         else:
             meetup.join_users.add(request.user)
-    # return redirect('meetup.views.meetup_detail', pk=pk)
-    # return HttpResponse(meetup.like_users.all())
-    # if request.method == 'GET':
-    #     print('like')
-    # elif request.method == 'POST':
-    #     if request.user in meetup.like_users.all():
-    #         meetup.like_users.remove(request.user)
-    #     else:
-    #         meetup.like_users.add(request.user)
     return render(request, '_meetup_users.html', {'meetup': meetup})
-
-def meetup_join(request, pk):
-    meetup = get_object_or_404(Meetup, pk=pk)
-    if request.user in meetup.join_users.all():
-        meetup.join_users.remove(request.user)
-    else:
-        meetup.join_users.add(request.user)
-    return redirect('meetup.views.meetup_detail', pk=pk)
-
-
 
