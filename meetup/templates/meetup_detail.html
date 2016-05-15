@@ -21,15 +21,21 @@
             <button class="join {{ is_join }} waves-effect waves-dark btn-large"></button>
             <button class="like {{ is_like }}"><i class="material-icons"></i></button>
         </div>
-        <ul>
-            주최자: {{ meetup.author }}
-            언제: {{ meetup.meetup_date }}
+        <div class="description">
+            <div class="info">
+                <div><i class="material-icons">&#xE0C8;</i>{{ meetup.location }}</div>
+                <div><i class="material-icons">&#xE878;</i>{{ meetup.meetup_date }}</div>
+            </div>
             {{ meetup.desc|linebreaks }}
-            장소: {{ meetup.location }}
-                {% if meetup.lat %}
-                    <div id="map" data-lat="{{ meetup.lat }}" data-lon="{{ meetup.lon }}" data-location="{{ meetup.location }}"></div>
-                {% endif %}
-        </ul>
+        </div>
+        <div class="author">
+            <p>{{ meetup.author.nickname }}</p>
+            <img class="avatar" src="{{ meetup.author.avatar.url }}"/>
+        </div>
+
+        {% if meetup.lat %}
+            <div id="map" data-lat="{{ meetup.lat }}" data-lon="{{ meetup.lon }}" data-location="{{ meetup.location }}"></div>
+        {% endif %}
     </div>
     <div class="users-container"></div>
     <div class="divider"></div>

@@ -1,18 +1,22 @@
-<div class="likes-container">
-    관심자 목록:
-    {% for user in meetup.like_users.all %}
-        <img class="avatar" src="{{ user.avatar.url }}"/>
-        <p>{{ user.nickname }}</p>
+<div class="join-container">
+    <h4>참여</h4>
+    {% for user in meetup.join_users.all %}
+        <div class="chip">
+            <img src="{{ user.avatar.url }}" alt="Contact Person">
+            {{ user.nickname }}
+        </div>
     {% empty %}
-        <p>노관심</p>
+        <p>1등으로 참여해보세요!</p>
     {% endfor %}
 </div>
-<div class="join-container">
-    참여자 목록:
-    {% for user in meetup.join_users.all %}
-        <img class="avatar" src="{{ user.avatar.url }}"/>
-        <p>{{ user.nickname }}</p>
+<div class="likes-container">
+    <h4>관심</h4>
+    {% for user in meetup.like_users.all %}
+        <div class="chip">
+            <img src="{{ user.avatar.url }}" alt="Contact Person">
+            {{ user.nickname }}
+        </div>
     {% empty %}
-        <p>노조인</p>
+        <p>관심이 가면 하트를 눌러주세요<3</p>
     {% endfor %}
 </div>

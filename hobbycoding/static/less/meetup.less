@@ -66,6 +66,45 @@ div.meetup-detail {
   }
 }
 
+/*-- 참여자/관심자 --*/
+div.meetup-detail {
+  div.description {
+    background: @light-gray;
+    padding: 1.4rem;
+    margin-top: 1.4rem;
+    border-radius: 3px 3px 0 0;
+    .info {
+      div {
+        font-weight: 500;
+        i {
+          vertical-align: middle;
+          margin: 0 0.2rem 0.4rem 0;
+        }
+      }
+    }
+  }
+  div.author {
+    border: 1.5px solid @light-gray;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0 0 3px 3px;
+    text-align: right;
+    p {
+      display: inline-block;
+      vertical-align: bottom;
+      font-weight: 500;
+    }
+  }
+}
+
+
+/*-- 참여자/관심자 --*/
+.users-container {
+  margin-bottom: 1.5rem;
+  .chip {
+    background: @light-gray;
+  }
+}
+
 /*-- 댓글 --*/
 .comments-container {
   .comments-header {
@@ -185,4 +224,6 @@ div.meetup-detail {
   font-size: 13px;
   font-weight: 300;
 }
+
+
 
