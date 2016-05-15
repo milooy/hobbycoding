@@ -22,21 +22,13 @@
             <button class="like {{ is_like }}"><i class="material-icons"></i></button>
         </div>
         <ul>
-            <li>주최자: {{ meetup.author }}</li>
-            <li>제목: {{ meetup.title }}</li>
-            <li>설명: {{ meetup.desc|linebreaks }}</li>
-            <li>태그:
-                {% for tag in meetup.tags.all %}
-                    <span>{{ tag }}</span>
-                {% empty %}
-                    <p>태그 없음</p>
-                {% endfor %}
-            </li>
-            <li>장소: {{ meetup.location }}
+            주최자: {{ meetup.author }}
+            언제: {{ meetup.meetup_date }}
+            {{ meetup.desc|linebreaks }}
+            장소: {{ meetup.location }}
                 {% if meetup.lat %}
                     <div id="map" data-lat="{{ meetup.lat }}" data-lon="{{ meetup.lon }}" data-location="{{ meetup.location }}"></div>
                 {% endif %}
-            </li>
         </ul>
     </div>
     <div class="users-container"></div>

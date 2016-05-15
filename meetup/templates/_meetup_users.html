@@ -1,6 +1,7 @@
 <div class="likes-container">
     관심자 목록:
     {% for user in meetup.like_users.all %}
+        <img class="avatar" src="{{ user.avatar.url }}"/>
         <p>{{ user.nickname }}</p>
     {% empty %}
         <p>노관심</p>
@@ -9,6 +10,7 @@
 <div class="join-container">
     참여자 목록:
     {% for user in meetup.join_users.all %}
+        <img class="avatar" src="{{ user.avatar.url }}"/>
         <p>{{ user.nickname }}</p>
     {% empty %}
         <p>노조인</p>

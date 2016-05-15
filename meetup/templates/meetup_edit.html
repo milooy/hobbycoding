@@ -9,19 +9,22 @@
 {#                {{ form.as_p }}#}
                 <p><label for="id_title">제목:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
                 <p>{{ form.title.errors|striptags }}</p>
-                <p><label for="id_desc">설명:</label> <textarea cols="40" id="id_desc" name="desc" rows="10">
-</textarea></p>
+                <p><label for="id_desc">설명:</label> <textarea cols="40" id="id_desc" name="desc" rows="10"></textarea></p>
                 <p>{{ form.desc.errors|striptags }}</p>
                 <p><label for="id_image_file">썸네일:</label> <input id="id_image_file" name="image_file" type="file" /></p>
                 <p>{{ form.image_file.errors|striptags }}</p>
+                <p><label for="id_meetup_date">모임 날짜/시간:</label><input id="id_meetup_date" name="meetup_date" type="text" data-field="datetime" readonly></p>
+                <p>{{ form.meetup_date.errors|striptags }}</p>
+{#                {{ form.meetup_date }}#}
                 <p><label for="id_location">장소 이름:</label> <input id="id_location" maxlength="50" name="location" type="text" /></p>
                 <p>{{ form.location.errors|striptags }}</p>
-                <p><label for="id_lat">위도:</label> <input id="id_lat" name="lat" step="any" type="number" /></p>
-                <p>{{ form.lat.errors|striptags }}</p>
-                <p><label for="id_lon">경도:</label> <input id="id_lon" name="lon" step="any" type="number" /></p>
-                <p>{{ form.lon.errors|striptags }}</p>
+                <p class="hide"><label for="id_lat">위도:</label> <input id="id_lat" name="lat" step="any" type="number" /></p>
+                <p class="hide"><label for="id_lon">경도:</label> <input id="id_lon" name="lon" step="any" type="number" /></p>
                 <p><label for="id_tags" class="">Tags:</label> <input id="id_tags" name="tags" type="text"> <span class="helptext">A comma-separated list of tags.</span></p>
                 <p>{{ form.tags.errors|striptags }}</p>
+
+                <div id="dtBox"></div>
+
                 <div class="map_wrap">
                     <div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
 
@@ -29,7 +32,7 @@
                         <div class="option">
                             <p>
                             <form>
-                                키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15">
+                                키워드 : <input type="text" value="구글 캠퍼스" id="keyword" size="15">
                                 <button type="submit" onclick="searchPlaces(); return false;">검색하기</button>
                             </p>
                         </div>
@@ -43,8 +46,17 @@
         </div>
     </div>
 {% endblock %}
+{% block page-css %}
+    <link rel="stylesheet" href="{% static 'components/curioussolutions-datetimepicker/dist/DateTimePicker.min.css' %}">
+{% endblock %}
 {% block js %}
+    <script src="{% static 'components/curioussolutions-datetimepicker/dist/DateTimePicker.min.js' %}"></script>
     <script src="{% static 'js/meetup.js' %}"></script>
     <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c0560d4dbb9c299defdcf21de8cab125&libraries=services"></script>
     <script src="{% static 'js/map.js' %}"></script>
+    <script>
+        $("#dtBox").DateTimePicker({
+            dateTimeFormat: "yyyy-MM-dd HH:mm"
+        });
+    </script>
 {% endblock %}

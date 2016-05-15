@@ -23,6 +23,7 @@ class Meetup(models.Model):
     image_file = models.ImageField(u'썸네일', upload_to='%Y/%m/%d', blank=True, null=True)
     created_date = models.DateTimeField(u'생성일', default=timezone.now)
     modified_date = models.DateTimeField(u'수정일', blank=True, null=True)
+    meetup_date = models.DateTimeField(u'모임일', default=timezone.now)
     location = models.CharField(u'장소 이름', max_length=50)
     lon = models.FloatField(u'경도', blank=True, null=True)
     lat = models.FloatField(u'위도', blank=True, null=True)
