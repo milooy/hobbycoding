@@ -1,6 +1,6 @@
 {
   "name": "hobbycoding",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Hobby Coding Community",
   "main": "Gruntfile.js",
   "scripts": {
