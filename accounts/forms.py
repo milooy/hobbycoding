@@ -46,7 +46,7 @@ class SignupForm(UserCreationForm):
         ),
         help_text="Enter the same password as above, for verification."
     )
-    # avatar = forms.ImageField()
+    avatar = forms.ImageField()
 
     class Meta: # SignupForm에 대한 기술서
         model = MyUser
