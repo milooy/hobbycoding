@@ -90,7 +90,7 @@ def meetup_new(request):
 #
 #     return render(request, 'meetup_edit.html', {'form': form})
 
-
+# @login_required
 class MeetupFormView(FormView):
     template_name = "meetup_edit.html"
     form_class = MeetupEditForm

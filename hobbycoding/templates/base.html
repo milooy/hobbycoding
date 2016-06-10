@@ -79,7 +79,8 @@
         <nav class="nav-main nav-dark nav-transparent" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src="{% static 'img/logo-dark2.png' %}"/></a>
                 <ul id="nav-top" class="right hide-on-med-and-down">
-                    <li><a href="/meetup">meetups</a></li>
+                    <li><a href="/meetup/new">밋업 개최</a></li>
+                    <li><a href="/meetup">밋업 목록</a></li>
                     {% if user.is_authenticated %}
                         <li class="user-info"><a class="dropdown-button" href="#!" data-activates="account-dropdown">
                             {{ user.nickname }}<img src="{{ user.avatar.url }}"/>
@@ -90,7 +91,8 @@
                     {% endif %}
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a href="/meetup">meetups</a></li>
+                    <li><a href="/meetup/new">밋업 개최</a></li>
+                    <li><a href="/meetup">밋업 목록</a></li>
                     {% if user.is_authenticated %}
                         <li class="user-info"><a href="#"><img src="{{ user.avatar.url }}"/>{{ user.nickname }}</a></li>
                     {% else %}
@@ -141,7 +143,7 @@
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Made by <a href="http://materializecss.com">Jay Jin</a>
+                    Made by <a href="https://github.com/milooy">Jay Jin</a>
                 </div>
             </div>
         </footer>
