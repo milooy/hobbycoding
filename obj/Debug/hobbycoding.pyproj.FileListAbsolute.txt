@@ -1,0 +1,13 @@
+C:\Users\lunel\Documents\GitHub\hobbycoding\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\attach_server.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\visualstudio_py_debugger.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\visualstudio_py_repl.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\visualstudio_py_util.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\__init__.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\__main__.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\bin\AzureSetup.cfg
+C:\Users\lunel\Documents\GitHub\hobbycoding\bin\Microsoft.PythonTools.AzureSetup.exe
+C:\Users\lunel\Documents\GitHub\hobbycoding\bin\Microsoft.PythonTools.AzureSetup.exe.config
+C:\Users\lunel\Documents\GitHub\hobbycoding\bin\wfastcgi.py
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\web.config
+C:\Users\lunel\Documents\GitHub\hobbycoding\obj\Debug\web.debug.config

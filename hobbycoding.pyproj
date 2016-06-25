@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{d8eee24d-8f5a-4606-8bc2-200c3bb5125f}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <UseIISExpress>true</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="accounts\templates\login.html" />
+    <Content Include="accounts\templates\signup.html" />
+    <Content Include="accounts\templates\signup_ok.html" />
+    <Content Include="comment\static\js\comment.js" />
+    <Content Include="comment\templates\_comment_list.html" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="hobbycoding\static\css\base.css" />
+    <Content Include="hobbycoding\static\img\logo-dark.png" />
+    <Content Include="hobbycoding\static\img\logo-dark2.png" />
+    <Content Include="hobbycoding\static\img\logo-dark3.png" />
+    <Content Include="hobbycoding\static\img\logo-light.png" />
+    <Content Include="hobbycoding\static\img\logo-light2.png" />
+    <Content Include="hobbycoding\static\img\logo-light3.png" />
+    <Content Include="hobbycoding\static\img\meetup_default.jpg" />
+    <Content Include="hobbycoding\static\img\test.jpg" />
+    <Content Include="hobbycoding\static\js\base.js" />
+    <Content Include="hobbycoding\static\js\map.js" />
+    <Content Include="hobbycoding\static\stylesheet\map.css" />
+    <Content Include="hobbycoding\templates\base.html" />
+    <Content Include="hobbycoding\templates\home.html" />
+    <Content Include="hobbycoding\templates\_pagination.html" />
+    <Content Include="meetup\static\js\meetup.js" />
+    <Content Include="meetup\templates\meetup_detail.html" />
+    <Content Include="meetup\templates\meetup_edit.html" />
+    <Content Include="meetup\templates\meetup_list.html" />
+    <Content Include="meetup\templates\_meetup_users.html" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="accounts\admin.py" />
+    <Compile Include="accounts\apps.py" />
+    <Compile Include="accounts\forms.py" />
+    <Compile Include="accounts\migrations\0001_initial.py" />
+    <Compile Include="accounts\migrations\0002_auto_20160217_0944.py" />
+    <Compile Include="accounts\migrations\0003_auto_20160217_0951.py" />
+    <Compile Include="accounts\migrations\0004_auto_20160217_1015.py" />
+    <Compile Include="accounts\migrations\0005_auto_20160217_1031.py" />
+    <Compile Include="accounts\migrations\0006_auto_20160219_0511.py" />
+    <Compile Include="accounts\migrations\__init__.py" />
+    <Compile Include="accounts\models.py" />
+    <Compile Include="accounts\social.py" />
+    <Compile Include="accounts\tests.py" />
+    <Compile Include="accounts\urls.py" />
+    <Compile Include="accounts\views.py" />
+    <Compile Include="accounts\__init__.py" />
+    <Compile Include="comment\admin.py" />
+    <Compile Include="comment\apps.py" />
+    <Compile Include="comment\forms.py" />
+    <Compile Include="comment\migrations\0001_initial.py" />
+    <Compile Include="comment\migrations\__init__.py" />
+    <Compile Include="comment\models.py" />
+    <Compile Include="comment\tests.py" />
+    <Compile Include="comment\views.py" />
+    <Compile Include="comment\__init__.py" />
+    <Compile Include="hobbycoding\settings.py" />
+    <Compile Include="hobbycoding\urls.py" />
+    <Compile Include="hobbycoding\views.py" />
+    <Compile Include="hobbycoding\wsgi.py" />
+    <Compile Include="hobbycoding\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="meetup\admin.py" />
+    <Compile Include="meetup\apps.py" />
+    <Compile Include="meetup\forms.py" />
+    <Compile Include="meetup\migrations\0001_initial.py" />
+    <Compile Include="meetup\migrations\0002_auto_20160403_0307.py" />
+    <Compile Include="meetup\migrations\0003_comments_tagmodel.py" />
+    <Compile Include="meetup\migrations\0004_auto_20160403_0547.py" />
+    <Compile Include="meetup\migrations\0005_auto_20160409_0707.py" />
+    <Compile Include="meetup\migrations\0006_auto_20160507_1029.py" />
+    <Compile Include="meetup\migrations\0007_auto_20160507_1223.py" />
+    <Compile Include="meetup\migrations\0008_auto_20160507_1400.py" />
+    <Compile Include="meetup\migrations\0009_auto_20160507_1433.py" />
+    <Compile Include="meetup\migrations\0010_auto_20160507_1440.py" />
+    <Compile Include="meetup\migrations\0011_auto_20160507_1444.py" />
+    <Compile Include="meetup\migrations\0012_auto_20160507_1546.py" />
+    <Compile Include="meetup\migrations\0013_auto_20160508_0224.py" />
+    <Compile Include="meetup\migrations\0014_meetup_join.py" />
+    <Compile Include="meetup\migrations\0015_auto_20160514_1033.py" />
+    <Compile Include="meetup\migrations\0016_meetup_meetup_date.py" />
+    <Compile Include="meetup\migrations\__init__.py" />
+    <Compile Include="meetup\mixins.py" />
+    <Compile Include="meetup\models.py" />
+    <Compile Include="meetup\tests.py" />
+    <Compile Include="meetup\urls.py" />
+    <Compile Include="meetup\views.py" />
+    <Compile Include="meetup\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="accounts" />
+    <Folder Include="accounts\migrations" />
+    <Folder Include="accounts\templates" />
+    <Folder Include="comment" />
+    <Folder Include="comment\migrations" />
+    <Folder Include="comment\static\" />
+    <Folder Include="comment\static\js" />
+    <Folder Include="comment\templates" />
+    <Folder Include="hobbycoding" />
+    <Folder Include="hobbycoding\static\" />
+    <Folder Include="hobbycoding\static\css" />
+    <Folder Include="hobbycoding\static\img" />
+    <Folder Include="hobbycoding\static\js" />
+    <Folder Include="hobbycoding\static\stylesheet" />
+    <Folder Include="hobbycoding\templates" />
+    <Folder Include="meetup" />
+    <Folder Include="meetup\migrations" />
+    <Folder Include="meetup\static\" />
+    <Folder Include="meetup\static\js" />
+    <Folder Include="meetup\templates" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:2105/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>True</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

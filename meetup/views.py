@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import EmptyPage
 from django.core.urlresolvers import reverse
