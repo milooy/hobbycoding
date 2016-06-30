@@ -2,11 +2,15 @@
 
 from __future__ import unicode_literals
 from django import forms
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 # from .models import Meetup, Comment
 from .models import Meetup
 
 
+
 class MeetupEditForm(forms.ModelForm):
+    desc = forms.CharField(widget=SummernoteWidget())
+
     class Meta:
         model = Meetup
         exclude = ('created_date', 'modified_date', )

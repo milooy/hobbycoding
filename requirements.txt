@@ -4,3 +4,4 @@ python-social-auth
 django-filter
 django-taggit
 django-taggit-templatetags2
+django-summernote>=0.8.5

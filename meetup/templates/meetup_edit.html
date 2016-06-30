@@ -9,7 +9,8 @@
 {#                {{ form.as_p }}#}
                 <p><label for="id_title">제목:</label> <input id="id_title" maxlength="200" name="title" type="text" /></p>
                 <p>{{ form.title.errors|striptags }}</p>
-                <p><label for="id_desc">설명:</label> <textarea cols="40" id="id_desc" name="desc" rows="10"></textarea></p>
+                <p><label for="id_desc">설명:</label> </p>
+                {{ form.desc | safe}}
                 <p>{{ form.desc.errors|striptags }}</p>
                 <p><label for="id_image_file">썸네일:</label> <input id="id_image_file" name="image_file" type="file" /></p>
                 <p>{{ form.image_file.errors|striptags }}</p>

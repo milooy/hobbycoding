@@ -26,7 +26,7 @@
                 <div><i class="material-icons">&#xE0C8;</i>{{ meetup.location }}</div>
                 <div><i class="material-icons">&#xE878;</i>{{ meetup.meetup_date }}</div>
             </div>
-            {{ meetup.desc|linebreaks }}
+            {% autoescape off %}{{ meetup.desc }}{% endautoescape %}
         </div>
         <div class="author">
             <p>{{ meetup.author.nickname }}</p>
