@@ -22,6 +22,12 @@ npm install
 ./manage.py migrate
 ```
 
+## grunt돌리기
+CSS를 LESS로 바꾼다
+```shell
+grunt
+```
+
 ## 서버 띄우기
 ```shell
 ./manage.py runserver

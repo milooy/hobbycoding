@@ -99,12 +99,19 @@ class MeetupFormView(FormView):
         # return reverse('meetup_detail', kwargs={'pk':new_meetup.pk})
         return reverse('meetup_list')
 
+    # form.py에 kwargs 넘기기 위함
+    def get_form_kwargs(self):
+        kw = super(MeetupFormView, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
+
     def form_valid(self, form):
         print("Form is valid")
-        new_meetup = form.save(commit=False)
-        new_meetup.author = self.request.user
-        new_meetup.published_date = timezone.now()
-        new_meetup.save()
+        # new_meetup = form.save(commit=False)
+        # new_meetup.author = self.request.user
+        # new_meetup.published_date = timezone.now()
+        # new_meetup.save()
+        form.save(self.request)
         form.save_m2m() # 태그 저장
         return super(MeetupFormView, self).form_valid(form)
 
